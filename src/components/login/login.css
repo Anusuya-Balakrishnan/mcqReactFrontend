@@ -1,0 +1,211 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins";
+  box-sizing: border-box;
+}
+
+.home-page {
+  background-color: #072c50;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.home-page .home-page__logo {
+  width: auto;
+  height: 150px;
+  padding: 10px;
+}
+.home-page .home-page__signin-box {
+  width: 500px;
+  height: 380px;
+  background-color: rgb(240, 242, 246);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 30px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.home-page .home-page__signin-box .home-page__sigin-box-title {
+  font-size: 38px;
+  color: #535353;
+  text-align: center;
+}
+.home-page .home-page__signin-box .home-page__sigin-box-middleBox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  text-align: left;
+  margin: 40px 0 30px;
+  width: 330px;
+}
+.home-page .home-page__signin-box .home-page__sigin-box-middleBox .errorMessage {
+  margin-left: 3%;
+}
+.home-page .home-page__signin-box .home-page__sigin-box-middleBox .passwordBox {
+  margin: 20px 0;
+  background-color: white;
+  display: flex;
+  border: 1px solid #072c50;
+  border-radius: 2px;
+  justify-content: center;
+  align-items: center;
+}
+.home-page .home-page__signin-box .home-page__sigin-box-middleBox .passwordBox input[type=password] {
+  width: 330px;
+  height: 60px;
+  border: 0;
+  padding: 15px;
+  border-radius: 0;
+  outline: 0;
+  margin: 0;
+  font-size: 19px;
+}
+.home-page .home-page__signin-box .home-page__sigin-box-middleBox .passwordBox .showPassword {
+  height: auto;
+  width: auto;
+  font-size: 18px;
+  background-color: white;
+  border: 0;
+  margin-right: 10px;
+}
+.home-page .home-page__signin-box .home-page__sigin-box-middleBox input[type=text] {
+  width: 330px;
+  height: 60px;
+  border: 0;
+  padding: 15px;
+  border-radius: 0;
+  outline: 0;
+  margin: 0;
+  font-size: 19px;
+}
+.home-page .home-page__signin-box .home-page__sigin-box-middleBox .input[type=text]:focus {
+  outline: 1px #072c50 solid;
+}
+.home-page .home-page__signin-box .signup_box {
+  margin-left: 3%;
+}
+.home-page .home-page__signin-box .signup_box span {
+  color: #2D81F7;
+  margin-left: 5px;
+}
+.home-page .home-page__signin-box .signup_box span:hover {
+  cursor: pointer;
+  -webkit-text-decoration: 2px underline;
+          text-decoration: 2px underline;
+}
+.home-page .home-page__signin-box .sigin-box__button {
+  width: 100%;
+  height: 45px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.home-page .home-page__signin-box .sigin-box__button .button {
+  text-decoration: none;
+  padding: 10px 50px;
+  font-size: larger;
+  background-color: #2D81F7;
+  border: 0;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media (max-width: 650px) {
+  .home-page .home-page__logo {
+    height: 10%;
+  }
+  .home-page .home-page__logo img {
+    width: 100%;
+    height: 100%;
+  }
+  .home-page .home-page__signin-box {
+    width: auto;
+    height: auto;
+  }
+  .home-page .home-page__signin-box .home-page__sigin-box-title {
+    font-size: 150%;
+  }
+  .home-page .home-page__signin-box .home-page__sigin-box-middleBox {
+    margin: 20px 0;
+  }
+  .home-page .home-page__signin-box .home-page__sigin-box-middleBox input[type=text] {
+    width: auto;
+    font-size: 90%;
+  }
+  .home-page .home-page__signin-box .home-page__sigin-box-middleBox .passwordBox {
+    margin: 15px 0;
+    width: 330px;
+    justify-content: space-between;
+  }
+  .home-page .home-page__signin-box .home-page__sigin-box-middleBox .passwordBox input.passwordInput {
+    width: 85%;
+    height: 60px;
+    font-size: 90%;
+  }
+  .home-page .home-page__signin-box .home-page__sigin-box-middleBox .passwordBox .showPassword {
+    font-size: 80%;
+    margin-right: 5px;
+  }
+  .home-page .home-page__signin-box .home-page__sigin-box-middleBox .errorMessage {
+    font-size: 90%;
+  }
+  .home-page .home-page__signin-box .home-page__sigin-box-middleBox .signup_box {
+    font-size: 90%;
+  }
+  .home-page .home-page__signin-box .sigin-box__button .button {
+    font-size: 90%;
+  }
+}
+@media (max-width: 420px) {
+  .home-page .home-page__logo {
+    height: 9%;
+  }
+  .home-page .home-page__logo img {
+    width: 100%;
+    height: 100%;
+  }
+  .home-page .home-page__signin-box {
+    width: 90%;
+    padding: 10px;
+  }
+  .home-page .home-page__signin-box .home-page__sigin-box-title {
+    font-size: 150%;
+  }
+  .home-page .home-page__signin-box .home-page__sigin-box-middleBox {
+    width: 100%;
+  }
+  .home-page .home-page__signin-box .home-page__sigin-box-middleBox input[type=text] {
+    height: auto;
+    font-size: 80%;
+  }
+  .home-page .home-page__signin-box .home-page__sigin-box-middleBox .passwordBox {
+    width: auto;
+  }
+  .home-page .home-page__signin-box .home-page__sigin-box-middleBox .passwordBox input.passwordInput {
+    width: 85%;
+  }
+  .home-page .home-page__signin-box .home-page__sigin-box-middleBox .passwordBox .showPassword {
+    font-size: 80%;
+    margin-right: 5px;
+  }
+  .home-page .home-page__signin-box .home-page__sigin-box-middleBox .errorMessage {
+    font-size: 80%;
+  }
+  .home-page .home-page__signin-box .home-page__sigin-box-middleBox .signup_box {
+    font-size: 80%;
+  }
+  .home-page .home-page__signin-box .sigin-box__button .button {
+    font-size: 80%;
+  }
+}/*# sourceMappingURL=login.css.map */

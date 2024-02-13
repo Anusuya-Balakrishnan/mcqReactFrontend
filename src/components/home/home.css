@@ -1,0 +1,160 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins";
+  box-sizing: border-box;
+}
+
+.MCQListPage__body {
+  width: auto;
+  height: 100vh;
+  background-color: rgb(240, 242, 246);
+  padding-top: 20px;
+  padding-left: 280px;
+}
+.MCQListPage__body .MCQListPage__title {
+  padding-top: 50px;
+  text-align: left;
+  color: black;
+}
+.MCQListPage__body .MCQListPage__title .title {
+  margin-top: 20px;
+  font-size: 48px;
+}
+.MCQListPage__body .MCQListPage__title .subtitle1 {
+  margin-top: 20px;
+  color: black;
+  font-weight: 500;
+  font-size: 22px;
+}
+.MCQListPage__body .MCQListPage__title .subtitle2 {
+  margin-top: 50px;
+  font-weight: 600;
+  font-size: 28px;
+  color: #072c50;
+}
+.MCQListPage__body .MCQListPage__title .content {
+  margin: 30px 0 40px;
+  width: 700px;
+  font-size: 18px;
+  line-height: 2;
+  color: #072c50;
+  text-align: left;
+}
+.MCQListPage__body .MCQ-lists {
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.MCQListPage__body .MCQ-lists .MCQ-lists_subParent {
+  margin: 20px;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.MCQListPage__body .MCQ-lists .MCQ-lists_subParent .MCQ-list__Each-test {
+  background-color: #4CA2F9;
+  padding: 15px;
+  margin-right: 40px;
+  width: 300px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.5s;
+  text-decoration: none;
+  color: white;
+}
+.MCQListPage__body .MCQ-lists .MCQ-lists_subParent .MCQ-list__Each-test:hover {
+  box-shadow: white;
+  transform: scale(1.05);
+}
+.MCQListPage__body .MCQ-lists .MCQ-lists_subParent p {
+  margin: 10px;
+}
+
+@media (max-width: 1150px) {
+  .MCQListPage__body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px;
+  }
+  .MCQListPage__body .MCQListPage__title {
+    text-align: center;
+  }
+}
+@media (max-width: 820px) {
+  .MCQListPage__body {
+    padding: 20px;
+  }
+  .MCQListPage__body .MCQListPage__title .title {
+    font-size: 180%;
+  }
+  .MCQListPage__body .MCQListPage__title .subtitle1 {
+    font-size: 120%;
+  }
+  .MCQListPage__body .MCQListPage__title .subtitle2 {
+    font-size: 120%;
+  }
+  .MCQListPage__body .MCQListPage__title .content {
+    font-size: 100%;
+    width: auto;
+  }
+  .MCQListPage__body .MCQ-lists {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .MCQListPage__body .MCQ-lists .MCQ-lists_subParent {
+    width: auto;
+    align-items: center;
+    justify-content: center;
+  }
+  .MCQListPage__body .MCQ-lists .MCQ-lists_subParent .MCQ-list__Each-test {
+    font-size: 90%;
+    margin: 10px;
+    width: auto;
+  }
+  .MCQListPage__body .MCQ-lists .MCQ-lists_subParent p {
+    margin: 0px;
+    font-size: 80%;
+  }
+}
+@media (max-width: 450px) {
+  .MCQListPage__body {
+    padding: 20px;
+  }
+  .MCQListPage__body .MCQListPage__title .title {
+    font-size: 180%;
+  }
+  .MCQListPage__body .MCQListPage__title .subtitle1 {
+    font-size: 120%;
+  }
+  .MCQListPage__body .MCQListPage__title .subtitle2 {
+    font-size: 120%;
+  }
+  .MCQListPage__body .MCQListPage__title .content {
+    font-size: 100%;
+    width: auto;
+  }
+  .MCQListPage__body .MCQ-lists {
+    flex-direction: column;
+  }
+  .MCQListPage__body .MCQ-lists .MCQ-lists_subParent .MCQ-list__Each-test {
+    font-size: 90%;
+    margin: 10px;
+    width: auto;
+  }
+}/*# sourceMappingURL=home.css.map */

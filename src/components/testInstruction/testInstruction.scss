@@ -1,0 +1,154 @@
+@use "../variables" as *;
+
+
+.instruction-page{
+    width: 100%;
+    min-height:89vh;
+    height: auto;
+    background-color: $leaderBoardBgColor;
+    // @include flexContent;
+    // flex-wrap: wrap;
+    text-align: left;
+    padding-top: 50px;
+    .instruction-page__content{
+        width: auto;
+        height: auto;
+       
+        padding-left: 150px;
+        .instruction-page__title{
+            color: $button-color;
+            font-size: 25px;
+            // margin-bottom: 30px;
+        }
+        .instruction-page__content_details{
+            // margin: 70px;
+            // margin-top: 40px;
+            p{
+                color: black;
+                font-size: 20px;
+                font-weight: 500;
+                padding: 20px;
+            }
+            ul{
+                li{
+                    padding: 10px;
+                    list-style-type: disc;
+                    // list-style-position: outside;
+                }
+                margin-left: 50px;
+            }
+            ::marker{
+                color:$button-color;
+                background-color: black;
+                
+            }
+            .submitBtn{
+                width: 100%;
+                
+                button{
+                    margin: 20px;
+                    border: 0;
+                    background-color: $button-color;
+                    color: white;
+                    padding: 15px 25px;
+                    font-size: 15px;
+                    border-radius: 5px;
+                    a{
+                        text-decoration: none;
+                        color: white;  
+                    }
+                }
+            }
+            
+        }
+        
+    }
+.instruction-page_image{
+    width: 400px;
+    height: 400px;
+    margin-left: 50px;
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover ;
+    }
+}
+}
+@media (max-width:850px){
+    .instruction-page{
+        display: flex;
+        // align-items: center;
+        justify-content: center;
+        // height: 100%;
+        height: auto;
+        padding-top: 30px;
+        flex-direction: column-reverse;
+        .instruction-page__content{
+            padding: 20px;
+            .instruction-page__title{
+                text-align: center;
+                font-size: 150%;
+            }
+            .instruction-page__content_details{
+                p{
+                    font-size: 100%;
+                    text-align: center;
+                }
+                ul{
+                    li{
+                        
+                        font-size: 90%;
+                        
+                    }
+                }
+                .submitBtn{
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+            
+
+        }
+    }
+    
+}
+
+
+@media (max-width:450px){
+    .instruction-page{
+        
+        .instruction-page__content{
+            padding:10px;
+            .instruction-page__title{
+                text-align: center;
+                font-size: 140%;
+            }
+            .instruction-page__content_details{
+                p{
+                    font-size: 100%;
+                    text-align: center;
+                }
+                ul{
+                    li{
+                        padding: 5px;
+                        line-height: 2;
+                        font-size: 85%;
+                        
+                    }
+                }
+                .submitBtn{
+                    display: flex;
+                    justify-content: center;
+                    button{
+                        margin: 10px;
+                        padding: 10px;
+                        font-size: 90%;
+                    }
+                }
+            }
+            
+
+        }
+    }
+    
+}

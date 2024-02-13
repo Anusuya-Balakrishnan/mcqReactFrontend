@@ -1,0 +1,305 @@
+
+
+@use "../variables" as *;
+
+.MCQ-Navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:$newBg_color;
+    height: 100px;
+    padding-left: 40px;
+    // padding: 0 40px;
+    // padding-bottom: 0;
+    // margin-bottom: 20px;
+    .MCQ-logo{
+        width: 250px;
+        height: 60px;
+        img{
+        width: 100%;
+        height: 100%;    
+        }
+    }
+    .mcq_secondChild{
+        list-style-type:none;
+        width: auto;
+        color:white;
+        .mcq_subchild{
+            
+            display: inline-block;
+           padding: 10px 15px;
+           border-radius: 5px;
+            margin:0  30px ;
+           
+           
+            
+            img{
+                width: 20px;
+                height: 20px;
+                position: relative;
+                top:5px;
+            }
+           span{
+            &:hover{
+                cursor: pointer;
+                color:rgb(126, 126, 126);
+            }
+           }
+           
+        }
+        .mcq_personProfile{
+            position: relative;
+            margin-right: 20px;
+            span{
+                font-size: 22px;
+               
+            }
+            span.icon{
+                position: relative;
+                top:5px;
+            }
+            ul{
+                display: none;
+                list-style-type: none;
+                position: absolute;
+                background-color: $newBg_color;
+                // background-color: aquamarine;
+                padding: 20px;
+                min-width: 150px;
+                right: -20px;
+                // top:30px;
+                border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+                li{
+                    width: auto;
+                    padding: 10px 0;
+                    &:hover{
+                        cursor: pointer;
+                        color:rgb(126, 126, 126);
+                    }
+
+                }
+            }
+            &:hover ul{
+                display: block;
+            }
+
+           }
+    }
+    // .MCQ-sidebar{
+    //     display: flex;
+    //     // height: 50px;
+    //     justify-content: center;
+    //     align-items: center;
+    //     height: 100%;
+    //     .MCQ-userProfile__leaderBoard{
+    //         margin: 0 20px;
+    //         @include flexContent;
+    //         // height: 100%;
+    //         // width: 100%;
+    //         // background-color: aqua;
+    //         div{
+    //             // width: auto;
+    //             cursor: pointer;
+    //             text-decoration: none;
+    //             color:white;
+    //             transition: 0.5s;
+    //             font-size: 18px;
+    //             &:hover{
+    //                 text-decoration: 2px underline solid white;
+    //             }
+    //         }
+
+    //         img{
+    //             margin-left: 10px;
+    //             width: 30px;
+    //             height: 30px;
+    //         }
+    //        }
+    //     .MCQ-userProfile-side{
+    //         color: white;
+    //         position: relative;
+    //         // padding-right: 30px;
+    //        .MCQ-userProfile{
+    //         display: flex;
+    //         cursor: pointer;
+
+    //         width: 150px;
+    //         height: 100%;
+    //         // background-image:$background-color;
+    //         text-align: center;
+    //         border-bottom-left-radius: 10px;
+    //         border-top-left-radius: 10px;
+    //         border-bottom-right-radius:50px;
+    //         border-top-right-radius: 50px;
+            
+    //             p{
+    //                 // padding: 10px;
+    //                 // width: 100%;
+    //                 // line-height: -2;
+                    
+    //                 font-size: 25px;
+    //                 // margin: 0 20px;
+
+    //             }
+    //             span{
+    //                 // background-color: white;
+    //                 // width: 50px;
+    //                 // height: 50px;
+    //                 font-size: 30px;
+    //                 // line-height:- 2;
+    //                 // border-radius: 50%;
+    //             }
+    //             // .MCQ-userProfile__image{
+    //             //     width: 50px;
+    //             //     height: 50px;
+    //             //     margin: 0 5px;
+    //             //     margin-right: 0;
+    //             //     border-radius: 50%;
+    //             //     background-color: white;
+    //             //     color:$newBg_color;
+    //             //     font-size: 30px;
+            
+    //             // img{
+    //             //     object-fit: cover;
+    //             //     width: 100%;
+    //             //     height: 100%;
+    //             //     border-radius: 50%;
+    //             //     }
+    //             // }
+    //         }
+            
+    //         .MCQ-userProfile__options{
+    //             position: absolute;
+    //             width: 150px;
+    //             display: none;
+    //             cursor: pointer;
+    //             background-color: $newBg_color;
+    //             // background-image: $background-color;
+    //             padding: 20px;
+    //             margin-top: 0px;
+    //             margin-right: 10px;
+    //             border-radius: 10px;
+                
+    //             .editOption{
+    //             text-align: center;
+    //             padding: 10px;
+    //             div{
+    //                 // text-decoration: none;
+    //                 color: white;
+    //                 &:hover{
+    //                     text-decoration: 2px underline solid white;
+    //                 }
+    //             }
+    //             }
+    //             .logoutOption{
+    //                 z-index: 10;
+    //                 @extend .editOption;
+                    
+                    
+    //             }
+    //         }
+    // .MCQListPage{
+    //     background-color: $plain-background;
+    //     width: 100%;
+    //     height: 100vh;
+        
+               
+    //         }
+               
+    //         }  
+            
+    // }
+   .sideMenu{
+    display: none;
+    color:white;
+    font-size: 35px;
+    position: relative;
+    line-height: 0;
+    margin-right: 30px;
+    .sideMenu_option{
+        display: none;
+        background-color: $newBg_color;
+        position: absolute;
+        right:-30px;
+        list-style-type: none;
+        // top:20px;
+        height: auto;
+        line-height:normal;
+        // font-size: 20px;
+        padding: 20px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        li{
+            cursor: pointer;
+
+            font-size: 16px;
+            padding: 10px;
+            text-align: right;
+            &:hover{
+                color:rgb(126, 126, 126);
+            }
+        }
+    }
+    &:hover .sideMenu_option{
+        display: block;
+    }
+   }
+}
+
+@media(max-width:1040px){
+    .MCQ-Navbar{
+       
+        .mcq_secondChild{
+            display: none;
+        }
+        .sideMenu{
+            display: block;
+           
+        }
+        
+    }
+}
+
+@media (max-width:500px){
+    .MCQ-Navbar{
+        padding-left: 20px;
+        // padding: 0 30px;
+        height: 90px;
+        .MCQ-logo{
+            width: 50%;
+            
+            img{
+                width: 100%;
+                height: 100%;    
+                }
+
+        }
+        .sideMenu{
+            font-size:25px ; 
+            .sideMenu_option{
+               li{
+                font-size: 60%;
+               }
+            }
+        }
+    }
+}
+@media (max-width:400px){
+    .MCQ-Navbar{
+        // padding: 0 30px;
+        height: 90px;
+        .MCQ-logo{
+            width: 60%;
+            
+            img{
+                width: 100%;
+                height: 100%;    
+                }
+
+        }
+        .sideMenu{
+            font-size:25px ; 
+        }
+    }
+}

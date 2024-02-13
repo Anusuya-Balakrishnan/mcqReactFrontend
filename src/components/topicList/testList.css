@@ -1,0 +1,220 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins";
+  box-sizing: border-box;
+}
+
+.mcqTestList {
+  height: 100vh;
+  padding-left: 150px;
+  background-color: rgb(240, 242, 246);
+}
+.mcqTestList .mcqTestList__Title {
+  width: 100%;
+  text-align: left;
+  padding-top: 50px;
+  color: #072c50;
+}
+.mcqTestList .mcqTestList__Title h1 {
+  font-size: 35px;
+  font-weight: 400;
+}
+.mcqTestList .mcqTestList__Title p {
+  margin-top: 20px;
+  font-size: 20px;
+  color: rgb(126, 126, 126);
+}
+.mcqTestList .MCQTest__Box-parent {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div {
+  text-decoration: none;
+  color: white;
+}
+.mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box {
+  background-image: radial-gradient(#2190F5, #0A489C);
+  width: 350px;
+  transition: 0.5s;
+  margin: 40px;
+  border-radius: 5px;
+  color: white;
+  font-family: "Poppines";
+  padding: 15px;
+}
+.mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-title {
+  display: flex;
+}
+.mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-title .MCQTest__Box-title__image {
+  width: 70px;
+  height: 70px;
+  background-color: rgba(255, 255, 255, 0.439);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-title .MCQTest__Box-title__image img {
+  width: 80%;
+  height: 80%;
+}
+.mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-title p {
+  font-size: 20px;
+  padding: 20px;
+}
+.mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-content p {
+  font-size: 15px;
+  margin: 20px;
+  text-align: left;
+}
+.mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-content p img {
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+.mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box:hover {
+  box-shadow: white;
+  transform: scale(1.05);
+}
+
+@media (max-width: 1050px) {
+  .mcqTestList {
+    height: auto;
+    padding-left: 0;
+  }
+  .mcqTestList .mcqTestList__Title {
+    width: 100%;
+    text-align: center;
+    padding-top: 50px;
+    color: #072c50;
+  }
+  .mcqTestList .mcqTestList__Title h1 {
+    font-size: 38px;
+  }
+  .mcqTestList .mcqTestList__Title p {
+    margin-top: 20px;
+    font-size: 20px;
+    color: rgb(126, 126, 126);
+  }
+  .mcqTestList .MCQTest__Box-parent {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div {
+    text-decoration: none;
+    color: white;
+  }
+  .mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box {
+    background-image: radial-gradient(#2190F5, #0A489C);
+    width: 350px;
+    transition: 0.5s;
+    border-radius: 5px;
+    color: white;
+    font-family: "Poppines";
+    padding: 15px;
+  }
+  .mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-title {
+    display: flex;
+  }
+  .mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-title .MCQTest__Box-title__image {
+    width: 70px;
+    height: 70px;
+    background-color: rgba(255, 255, 255, 0.439);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-title .MCQTest__Box-title__image img {
+    width: 80%;
+    height: 80%;
+  }
+  .mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-title p {
+    font-size: 20px;
+    padding: 20px;
+  }
+  .mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-content p {
+    font-size: 15px;
+    margin: 20px;
+    text-align: left;
+  }
+  .mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-content p img {
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  .mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box:hover {
+    box-shadow: white;
+    transform: scale(1.05);
+  }
+}
+@media (max-width: 900px) {
+  .mcqTestList .mcqTestList__Title {
+    padding-top: 50px;
+  }
+  .mcqTestList .mcqTestList__Title h1 {
+    font-size: 150%;
+  }
+  .mcqTestList .mcqTestList__Title p {
+    font-size: 110%;
+  }
+  .mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box {
+    width: 90%;
+    margin: 20px;
+    padding: 10px;
+  }
+  .mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-title {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-title .MCQTest__Box-title__image img {
+    width: 80%;
+    height: 80%;
+  }
+  .mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-title p {
+    font-size: 110%;
+  }
+  .mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-content p {
+    font-size: 80%;
+    margin: 20px 10px;
+    text-align: left;
+  }
+  .mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-content p img {
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  .mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box:hover {
+    box-shadow: white;
+    transform: scale(1.05);
+  }
+}
+@media (max-width: 450px) {
+  .mcqTestList .MCQTest__Box-parent .MCQTest__Box {
+    width: auto;
+  }
+  .mcqTestList .MCQTest__Box-parent .MCQTest__Box .MCQTest__Box-title {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mcqTestList .MCQTest__Box-parent .MCQTest__Box .MCQTest__Box-title p {
+    font-size: 120%;
+  }
+  .mcqTestList .MCQTest__Box-parent .MCQTest__Box .MCQTest__Box-content p {
+    font-size: 75%;
+  }
+}/*# sourceMappingURL=testList.css.map */

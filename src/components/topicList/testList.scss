@@ -1,0 +1,279 @@
+
+
+@use "../variables" as *;
+
+
+.mcqTestList{
+    height: 100vh;
+    padding-left:150px ;
+    background-color:$newPlainBg;
+    .mcqTestList__Title{
+        width: 100%;
+        text-align: left;
+        padding-top: 50px;
+        
+        // background-color: aquamarine;
+        // font-size: 30px;
+        color:$newBg_color;
+        h1{
+            font-size: 35px;
+            font-weight: 400;
+        }
+        p{
+            margin-top: 20px;
+            font-size: 20px;
+            color:$form-text-color;
+        }
+    }
+    .MCQTest__Box-parent{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        // justify-content: space-evenly;
+        flex-wrap: wrap;
+        .MCQ-list__Each-test{
+        div{
+        text-decoration: none;
+        color: white;
+        .MCQTest__Box{
+            // background-color: $button-color;
+            background-image: $background-color;
+            width: 350px;
+            transition: 0.5s;
+            // height: 200px;
+            margin: 40px ;
+            border-radius: 5px;
+            color: white;
+            font-family: "Poppines";
+            padding: 15px;
+            .MCQTest__Box-title{
+                display: flex;
+                
+                .MCQTest__Box-title__image{
+                    width: 70px;
+                    height: 70px;
+                    background-color: rgba(255, 255, 255, 0.439);
+                    border-radius: 50%;
+                    @include flexContent;    
+                    img{
+                        width: 80%;
+                        height: 80%;
+                    }
+                }
+                p{
+                  font-size: 20px;
+                  padding: 20px;  
+                }
+            }
+            .MCQTest__Box-content{
+                p{
+                    font-size: 15px;
+                    margin: 20px;
+                    text-align: left;
+                    img{
+                        float: left;
+                        width: 20px;
+                        height: 20px;
+                        margin-right:10px;
+                        // margin-top: 3px;
+                    }
+                }
+            }
+            &:hover{
+                box-shadow: white;
+                transform: scale(1.05);
+            }
+        }
+    }
+        }
+        
+        
+    }
+}
+
+
+@media (max-width:1050px) {
+    .mcqTestList{
+        height: auto;
+        padding-left:0 ;
+        .mcqTestList__Title{
+            width: 100%;
+            text-align: center;
+            padding-top: 50px;
+            
+            // background-color: aquamarine;
+            // font-size: 30px;
+            color:$newBg_color;
+            h1{
+                font-size: 38px;
+            }
+            p{
+                margin-top: 20px;
+                font-size: 20px;
+                color:$form-text-color;
+            }
+        }
+        .MCQTest__Box-parent{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            // justify-content: space-evenly;
+            flex-wrap: wrap;
+            .MCQ-list__Each-test{
+            div{
+            text-decoration: none;
+            color: white;
+            .MCQTest__Box{
+                // background-color: $button-color;
+                background-image: $background-color;
+                width: 350px;
+                transition: 0.5s;
+                // height: 200px;
+                // margin: 40px 45px;
+                border-radius: 5px;
+                color: white;
+                font-family: "Poppines";
+                padding: 15px;
+                .MCQTest__Box-title{
+                    display: flex;
+                    
+                    .MCQTest__Box-title__image{
+                        width: 70px;
+                        height: 70px;
+                        background-color: rgba(255, 255, 255, 0.439);
+                        border-radius: 50%;
+                        @include flexContent;    
+                        img{
+                            width: 80%;
+                            height: 80%;
+                        }
+                    }
+                    p{
+                      font-size: 20px;
+                      padding: 20px;  
+                    }
+                }
+                .MCQTest__Box-content{
+                    p{
+                        font-size: 15px;
+                        margin: 20px;
+                        text-align: left;
+                        img{
+                            float: left;
+                            width: 20px;
+                            height: 20px;
+                            margin-right:10px;
+                            // margin-top: 3px;
+                        }
+                    }
+                }
+                &:hover{
+                    box-shadow: white;
+                    transform: scale(1.05);
+                }
+            }
+        }
+            }
+            
+            
+        }
+    } 
+}
+
+@media (max-width:900px) {
+    .mcqTestList{
+        
+        .mcqTestList__Title{
+           
+            padding-top: 50px;
+          
+            h1{
+                font-size: 150%;
+            }
+            p{
+                
+                font-size: 110%;
+                
+            }
+        }
+        .MCQTest__Box-parent{
+            
+            .MCQ-list__Each-test{
+            div{
+            
+            .MCQTest__Box{
+                
+                width: 90%;
+                
+                margin: 20px;
+                
+                padding: 10px;
+                .MCQTest__Box-title{
+                    
+                    flex-direction: column;
+                    @include flexContent;
+                    .MCQTest__Box-title__image{
+                           
+                        img{
+                            width: 80%;
+                            height: 80%;
+                        }
+                    }
+                    p{
+                      font-size: 110%;
+
+                       
+                    }
+                }
+                .MCQTest__Box-content{
+                    p{
+                        font-size: 80%;
+                        margin: 20px 10px;
+                        text-align: left;
+                        img{
+                            float: left;
+                            width: 20px;
+                            height: 20px;
+                            margin-right:10px;
+                            // margin-top: 3px;
+                        }
+                    }
+                }
+                &:hover{
+                    box-shadow: white;
+                    transform: scale(1.05);
+                }
+            }
+        }
+            }
+            
+            
+        }
+    } 
+}
+@media (max-width:450px) {
+    .mcqTestList{
+        .MCQTest__Box-parent{
+            .MCQTest__Box{
+                width: auto;
+                .MCQTest__Box-title{
+                    flex-direction: column;
+                    @include flexContent;
+                   p{
+                    font-size: 120%;
+                    
+                   }
+                }
+                .MCQTest__Box-content{
+                    
+                    p{
+                        font-size: 75%;
+                        
+                    }
+                }
+            }
+        }
+    }
+    
+}
