@@ -51,20 +51,6 @@
                 div{
                     color:rgb(0, 0, 0);
                     padding: 20px 50px;
-                }
-                &:hover{
-                    background-color:$button-color;
-                   div{
-                    color:white;
-                   }
-                }
-            }
-            .currentUser{
-                margin-bottom: 2px;
-                div{
-                    // display: flex;
-                    // justify-content: center;
-                    // align-items: center;
                     img{
                         position: relative;
                         width: 30px;
@@ -72,6 +58,22 @@
                         top:5px;
                     }
                 }
+                // &:hover{
+                //     background-color:$button-color;
+                //    div{
+                //     color:white;
+                //    }
+                // }
+            }
+            .currentUser{
+                margin-bottom: 2px;
+                background-color: rgba(210, 210, 210, 0.29);
+                // div{
+                //     display: flex;
+                //     justify-content: center;
+                //     align-items: center;
+                    
+                // }
             }
         
     }

@@ -89,58 +89,65 @@ export function TestInstruction() {
   };
   return (
     <>
-      {loading ? (
-        <Spinner />
-      ) : localStorage.getItem("token") ? (
+      {localStorage.getItem("token") ? (
         <section>
           <Navbar />
-          <section>
-            <div className="instruction-page">
-              <div className="instruction-page__content">
-                <div className="instruction-page__title">
-                  {topicName} Test Instructions:
-                </div>
-                <div className="instruction-page__content_details">
-                  <p>Test Details:</p>
-                  <ul>
-                    <li>Total Number of Questions: {totalQuestions}</li>
-                    <li>Each Questions carries 1 mark</li>
-                    <li>Time Allocated: {totalTime} minutes</li>
-                  </ul>
-                  <p>Instructions:</p>
-                  <ul>
-                    <li>
-                      <b>Read Carefully:</b> Take your time to read each
-                      question thoroughly.
-                    </li>
-                    <li>
-                      <b>Answering:</b> Provide your answers in the allocated
-                      spaces or select the correct option.
-                    </li>
-                    <li>
-                      <b>Time Management:</b> Keep an eye on the timer. Manage
-                      your time wisely to answer all questions within the
-                      allocated {totalTime}
-                      minutes.
-                    </li>
-                    <li>
-                      <b>Submission:</b> Once you've completed all questions or
-                      when the timer runs out, click "Submit" to view your
-                      results.
-                    </li>
-                  </ul>
-                  <p>Good Luck &#128512;</p>
-                  <div className="submitBtn">
-                    <button onClick={createSession}>
-                      <Link to={`/testPage/${topicNameData}`}>Start Quiz</Link>
-                    </button>
+          {loading ? (
+            <Spinner />
+          ) : (
+            <section>
+              <div className="instruction-page">
+                <div className="instruction-page__content">
+                  <div className="instruction-page__title">
+                    {topicName} Test Instructions:
                   </div>
+                  <div className="instruction-page__content_details">
+                    <p>Test Details:</p>
+                    <ul>
+                      <li>Total number of questions: {totalQuestions}</li>
+                      <li>Each question carries 1 mark</li>
+                      <li>
+                        Time Allocated: {totalTime}{" "}
+                        <span style={{ marginLeft: "3px" }}>minutes</span>
+                      </li>
+                    </ul>
+                    <p>Instructions:</p>
+                    <ul>
+                      <li>
+                        <b>Read Carefully:</b> Take your time to read each
+                        question thoroughly.
+                      </li>
+                      <li>
+                        <b>Answering:</b> Provide your answers in the allocated
+                        spaces or select the correct option.
+                      </li>
+                      <li>
+                        <b>Time Management:</b> Keep an eye on the timer. Manage
+                        your time wisely to answer all questions within the
+                        allocated {totalTime}
+                        minutes.
+                      </li>
+                      <li>
+                        <b>Submission:</b> Once you've completed all questions
+                        or when the timer runs out, click "Submit" to view your
+                        results.
+                      </li>
+                    </ul>
+                    <p>Good Luck &#128512;</p>
+                    <div className="submitBtn">
+                      <button onClick={createSession}>
+                        <Link to={`/testPage/${topicNameData}`}>
+                          Start Quiz
+                        </Link>
+                      </button>
+                    </div>
 
-                  {/* <p>{dummy.question}</p> */}
+                    {/* <p>{dummy.question}</p> */}
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
+          )}
         </section>
       ) : (
         <Login />

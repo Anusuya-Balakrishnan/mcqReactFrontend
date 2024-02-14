@@ -54,20 +54,15 @@
   color: rgb(0, 0, 0);
   padding: 20px 50px;
 }
-.leaderboardPage .leaderboard_table .leaderboard_item2:hover {
-  background-color: #2D81F7;
-}
-.leaderboardPage .leaderboard_table .leaderboard_item2:hover div {
-  color: white;
-}
-.leaderboardPage .leaderboard_table .currentUser {
-  margin-bottom: 2px;
-}
-.leaderboardPage .leaderboard_table .currentUser div img {
+.leaderboardPage .leaderboard_table .leaderboard_item2 div img {
   position: relative;
   width: 30px;
   height: 30px;
   top: 5px;
+}
+.leaderboardPage .leaderboard_table .currentUser {
+  margin-bottom: 2px;
+  background-color: rgba(210, 210, 210, 0.29);
 }
 
 @media (max-width: 1180px) {

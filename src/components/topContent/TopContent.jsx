@@ -54,35 +54,36 @@ export function TopContent() {
   };
   return (
     <>
-      {loading ? (
-        <Spinner />
-      ) : localStorage.getItem("token") ? (
+      {localStorage.getItem("token") ? (
         <section>
           <Navbar />
-
-          <div className="test-content__parent">
-            <div className="test-content__heading">
-              <div className="test-content__title">
-                Choose a topic to focus your quiz questions.
-              </div>
-              <div className="test-content">
-                Click your selection to proceed.
-              </div>
-            </div>
-            <div className="test-content-lists">
-              {topics.map((item, index) => (
-                <div
-                  className="test-content__listElement"
-                  key={index}
-                  onClick={() => {
-                    userNaivagate(item.id, item.languageId, item.topicName);
-                  }}
-                >
-                  {item.topicName}
+          {loading ? (
+            <Spinner />
+          ) : (
+            <div className="test-content__parent">
+              <div className="test-content__heading">
+                <div className="test-content__title">
+                  Choose a topic for your quiz.
                 </div>
-              ))}
+                <div className="test-content">
+                  Click your selection to proceed.
+                </div>
+              </div>
+              <div className="test-content-lists">
+                {topics.map((item, index) => (
+                  <div
+                    className="test-content__listElement"
+                    key={index}
+                    onClick={() => {
+                      userNaivagate(item.id, item.languageId, item.topicName);
+                    }}
+                  >
+                    {item.topicName}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </section>
       ) : (
         <Login />

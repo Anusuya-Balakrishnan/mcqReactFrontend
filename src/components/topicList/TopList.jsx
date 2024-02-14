@@ -53,46 +53,48 @@ export function TopList() {
   };
   return (
     <>
-      {loading ? (
-        <Spinner />
-      ) : localStorage.getItem("token") ? (
+      {localStorage.getItem("token") ? (
         <section>
           <Navbar />
-          <section className="mcqTestList">
-            <div class="mcqTestList__Title">
-              <h1>Explore Topics</h1>
-              <p>Choose a Language to Dive Deeper:</p>
-            </div>
-            <div class="MCQTest__Box-parent">
-              {languageList.map((item, index) => (
-                <div className="MCQ-list__Each-test">
-                  <div
-                    key={index}
-                    onClick={() => {
-                      contentNavigate(item.id);
-                    }}
-                  >
-                    <div class="MCQTest__Box">
-                      <div class="MCQTest__Box-title">
-                        <div class="MCQTest__Box-title__image">
-                          <img src={pythonLogo} alt="python logo" />
-                        </div>
+          {loading ? (
+            <Spinner />
+          ) : (
+            <section className="mcqTestList">
+              <div class="mcqTestList__Title">
+                <h1>Explore Topics</h1>
+                <p>Choose a Language to Dive Deeper:</p>
+              </div>
+              <div class="MCQTest__Box-parent">
+                {languageList.map((item, index) => (
+                  <div className="MCQ-list__Each-test">
+                    <div
+                      key={index}
+                      onClick={() => {
+                        contentNavigate(item.id);
+                      }}
+                    >
+                      <div class="MCQTest__Box">
+                        <div class="MCQTest__Box-title">
+                          <div class="MCQTest__Box-title__image">
+                            <img src={pythonLogo} alt="python logo" />
+                          </div>
 
-                        <p>{item.languageName} MCQs</p>
-                      </div>
-                      <div class="MCQTest__Box-content">
-                        <p>Average Score: 4</p>
-                        <p>No of Person Attended : 2502</p>
-                        {/* <p>
-                          <img src={light} alt="light" /> Beginner
-                        </p> */}
+                          <p>{item.languageName} MCQs</p>
+                        </div>
+                        <div class="MCQTest__Box-content">
+                          <p>Average Score: 4</p>
+                          <p>No of Participants : 2502</p>
+                          {/* <p>
+                        <img src={light} alt="light" /> Beginner
+                      </p> */}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </section>
+                ))}
+              </div>
+            </section>
+          )}
         </section>
       ) : (
         <Login />

@@ -114,7 +114,7 @@ export default function Login() {
                     {errorMessage}
                   </div>
                   <div className="signup_box">
-                    Don't you have Account?{" "}
+                    Don’t have an account?{" "}
                     <span onClick={navigateSignup}>Sign Up</span>
                   </div>
                 </div>

@@ -154,19 +154,19 @@ export function ResultPage() {
                       </span>
                     </li>
                     <li>
-                      Number of Correct Answer :
+                      Number of Correct Answer(s) :
                       <span>
                         {resultContent ? resultContent.correctCount : ""}
                       </span>
                     </li>
                     <li>
-                      Number of Wrong Answer :
+                      Number of Wrong Answer(s) :
                       <span>
                         {resultContent ? resultContent.wrongCount : ""}
                       </span>
                     </li>
                     <li>
-                      Number of Skipped Answer :
+                      Number of Skipped Answer(s) :
                       <span>
                         {resultContent ? resultContent.skippedCount : ""}
                       </span>

@@ -12,6 +12,7 @@ import axios from "axios";
 import { RiTimerLine } from "react-icons/ri";
 import { ResultPage } from "../resultPage/ResultPage";
 import { NavbarForQuiz } from "../navbar/NavbarForQuiz";
+import Spinner from "../Spinner/Spinner";
 
 export function QuestionPage() {
   // data from test instruction page
@@ -42,6 +43,7 @@ export function QuestionPage() {
   const [resultObject, setResultObject] = useState({});
   const [isSelected, setSelected] = useState(0);
   const [timer, setTimer] = useState(10);
+  const [loading, setLoading] = useState(false);
   const [mins, setMins] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const url = "https://mcqbackend.vercel.app/mcq/";
@@ -183,6 +185,7 @@ export function QuestionPage() {
       resultObject.languageId &&
       resultObject.level
     ) {
+      setLoading(true);
       postResultData();
     }
   }, [resultObject, resultList, topicIdData, languageIdData, level]); // The effect will run whenever resultObject changes
@@ -193,70 +196,78 @@ export function QuestionPage() {
         JSON.parse(sessionStorage.getItem("isUserActive")) ? (
           <section>
             <NavbarForQuiz />
-            <section className="question-page">
-              <div className="question-page__title">
-                <div>
-                  {topicName}: {count + 1} of {id_list.length} Questions
-                </div>
-                {/* <div className="Question_time">
+            {loading ? (
+              <Spinner />
+            ) : (
+              <section className="question-page">
+                <div className="question-page__title">
+                  <div>
+                    {topicName}: {count + 1} of {id_list.length} Questions
+                  </div>
+                  {/* <div className="Question_time">
                   <span>
                     <RiTimerLine />
                   </span>
                   {mins} mins:{seconds} secs
                 </div> */}
-              </div>
-              <div className="question-page__body">
-                <div className="question-page-content">
-                  <form id="questionForm">
-                    <span className="question-page-content__questions">
-                      {currentQuestion["question"] || ""}
-                    </span>
-                    <div className="question-page-content__optionParent">
-                      {currentQuestion["option"]
-                        ? currentQuestion["option"].map((item, index) => (
-                            <div
-                              key={index}
-                              className="question-page-content__options"
-                              onClick={() => {
-                                handleAnswer(item, index + 1);
-                              }}
-                              style={{
-                                backgroundColor:
-                                  isSelected == index + 1 ? "#072c50" : "white",
-                                color:
-                                  isSelected == index + 1 ? "white" : "#072c50",
-                              }}
-                            >
-                              <div key={index}>{item}</div>
-                            </div>
-                          ))
-                        : ""}
-                    </div>
-
-                    <button
-                      type="button"
-                      className="question-page-content__submit"
-                      name="submit"
-                    >
-                      <div onClick={changeQuestionNumber}> next </div>
-                    </button>
-                    <ToastContainer
-                      position="top-center"
-                      autoClose={5000}
-                      hideProgressBar
-                      newestOnTop={false}
-                      closeOnClick
-                      rtl={false}
-                      pauseOnFocusLoss={false}
-                      draggable
-                      pauseOnHover
-                      theme="dark"
-                      transition={Bounce} // Corrected syntax
-                    />
-                  </form>
                 </div>
-              </div>
-            </section>
+                <div className="question-page__body">
+                  <div className="question-page-content">
+                    <form id="questionForm">
+                      <span className="question-page-content__questions">
+                        {currentQuestion["question"] || ""}
+                      </span>
+                      <div className="question-page-content__optionParent">
+                        {currentQuestion["option"]
+                          ? currentQuestion["option"].map((item, index) => (
+                              <div
+                                key={index}
+                                className="question-page-content__options"
+                                onClick={() => {
+                                  handleAnswer(item, index + 1);
+                                }}
+                                style={{
+                                  backgroundColor:
+                                    isSelected == index + 1
+                                      ? "#072c50"
+                                      : "white",
+                                  color:
+                                    isSelected == index + 1
+                                      ? "white"
+                                      : "#072c50",
+                                }}
+                              >
+                                <div key={index}>{item}</div>
+                              </div>
+                            ))
+                          : ""}
+                      </div>
+
+                      <button
+                        type="button"
+                        className="question-page-content__submit"
+                        name="submit"
+                      >
+                        <div onClick={changeQuestionNumber}> next </div>
+                      </button>
+                      <ToastContainer
+                        position="top-center"
+                        autoClose={5000}
+                        hideProgressBar
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss={false}
+                        draggable
+                        pauseOnHover
+                        theme="dark"
+                        transition={Bounce} // Corrected syntax
+                      />
+                    </form>
+                  </div>
+                </div>
+              </section>
+            )}
           </section>
         ) : (
           <ResultPage />

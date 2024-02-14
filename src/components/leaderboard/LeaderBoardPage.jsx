@@ -51,61 +51,74 @@ function LeaderBoardPage() {
   }, [resultData]);
   return (
     <>
-      {loading ? (
-        <Spinner />
-      ) : localStorage.getItem("token") ? (
+      {localStorage.getItem("token") ? (
         <>
           <Navbar />
-          <section className="leaderboardPage">
-            <div className="leaderboardHeading">
-              <div className="leaderboardHeading_title">LeaderBoard</div>
-              {/* <div className="leaderboardHeading_subtitle">
+          {loading ? (
+            <Spinner />
+          ) : (
+            <section className="leaderboardPage">
+              <div className="leaderboardHeading">
+                <div className="leaderboardHeading_title">LeaderBoard</div>
+                {/* <div className="leaderboardHeading_subtitle">
                 Top {resultData ? resultData.length : ""} Users in the
                 Community.
               </div> */}
-            </div>
-            <div className="leaderboard_table">
-              <div className="leaderboard_table_heading">
-                <div>Rank</div>
-                <div>User</div>
-                <div>Points</div>
               </div>
-              {currentUserData
-                ? currentUserData.map((item, index) => (
-                    <React.Fragment key={index}>
-                      <div className="leaderboard_item2 currentUser">
-                        <div>{currentUserId ? currentUserId : ""}</div>
-                        <div>
-                          {item.username[0].toUpperCase() +
-                            item.username.slice(1)}{" "}
-                          <img src={winCup} alt="medal" />
+              <div className="leaderboard_table">
+                <div className="leaderboard_table_heading">
+                  <div>Rank</div>
+                  <div>User</div>
+                  <div>Points</div>
+                </div>
+                {/* {currentUserData
+                  ? currentUserData.map((item, index) => (
+                      <React.Fragment key={index}>
+                        <div className="leaderboard_item2 currentUser">
+                          <div>{currentUserId ? currentUserId : ""}</div>
+                          <div>
+                            {item.username[0].toUpperCase() +
+                              item.username.slice(1)}{" "}
+                            <img src={winCup} alt="medal" />
+                          </div>
+                          <div>{item.result}</div>
                         </div>
-                        <div>{item.result}</div>
-                      </div>
-                    </React.Fragment>
-                  ))
-                : ""}
+                      </React.Fragment>
+                    ))
+                  : ""} */}
 
-              {resultData ? (
-                resultData.map((item, index) => {
-                  return (
-                    <React.Fragment key={index}>
-                      <div className="leaderboard_item2">
-                        <div>{index + 1}</div>
-                        <div>
-                          {item.username[0].toUpperCase() +
-                            item.username.slice(1)}
+                {resultData ? (
+                  resultData.map((item, index) => {
+                    return (
+                      <React.Fragment key={index}>
+                        <div
+                          className={` leaderboard_item2 ${
+                            item.currentUser && "currentUser"
+                          }`}
+                        >
+                          <div>{index + 1}</div>
+                          <div>
+                            {item.username[0].toUpperCase() +
+                              item.username.slice(1)}
+                            <img
+                              src={winCup}
+                              style={{
+                                display: index + 1 == 1 ? "inline" : "none",
+                              }}
+                              alt="medal"
+                            />
+                          </div>
+                          <div>{item.result}</div>
                         </div>
-                        <div>{item.result}</div>
-                      </div>
-                    </React.Fragment>
-                  );
-                })
-              ) : (
-                <div>No data available</div>
-              )}
-            </div>
-          </section>
+                      </React.Fragment>
+                    );
+                  })
+                ) : (
+                  <div>No data available</div>
+                )}
+              </div>
+            </section>
+          )}
         </>
       ) : (
         <Login />

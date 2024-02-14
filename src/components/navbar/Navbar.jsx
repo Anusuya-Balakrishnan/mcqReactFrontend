@@ -97,7 +97,7 @@ export function Navbar() {
                 navigate("/leaderBoardPage");
               }}
             >
-              Leader Board
+              Leaderboard
             </span>
             <img src={medal} alt="medal" />
           </li>
@@ -128,7 +128,7 @@ export function Navbar() {
                 navigate("/leaderBoardPage");
               }}
             >
-              LeaderBoard
+              Leaderboard
             </li>
             {/* <li>Edit Profile</li> */}
             <li onClick={logoutFunction}>Logout</li>
