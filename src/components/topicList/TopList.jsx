@@ -8,10 +8,12 @@ import { Navbar } from "../navbar/Navbar";
 import axios from "axios";
 import Login from "../login/Login";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../Spinner/Spinner";
 export function TopList() {
   const [data, setData] = useState([]);
   const [languageList, setlanguageList] = useState([]);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
   // getting value from useParams
   let { id } = useParams();
   const url = "https://mcqbackend.vercel.app/mcq/";
@@ -27,8 +29,10 @@ export function TopList() {
         });
 
         setData(response?.data?.languages);
+        setLoading(false);
       } catch (error) {
         console.log("Error:", error);
+        setLoading(false);
       }
     };
 
@@ -49,7 +53,9 @@ export function TopList() {
   };
   return (
     <>
-      {localStorage.getItem("token") ? (
+      {loading ? (
+        <Spinner />
+      ) : localStorage.getItem("token") ? (
         <section>
           <Navbar />
           <section className="mcqTestList">

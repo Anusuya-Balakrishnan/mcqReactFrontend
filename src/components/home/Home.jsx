@@ -7,11 +7,13 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Spinner from "../Spinner/Spinner";
 export function Home() {
   // const array = ["Programming", "Testing"];
   const [data, setData] = useState([]);
   const [mcqList, setMcqList] = useState([]);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
   const url = "https://mcqbackend.vercel.app/mcq/";
   useEffect(() => {
     const fetchData = async () => {
@@ -24,8 +26,12 @@ export function Home() {
         });
 
         setData(response?.data?.mcqList);
+        // Set loading to false once data is fetched
+        setLoading(false);
       } catch (error) {
         console.log("Error:", error);
+        // Set loading to false once data is fetched
+        setLoading(false);
       }
     };
 
@@ -47,7 +53,9 @@ export function Home() {
   const clickAction = () => {};
   return (
     <>
-      {localStorage.getItem("token") ? (
+      {loading ? (
+        <Spinner />
+      ) : localStorage.getItem("token") ? (
         <div className="Homepage">
           <Navbar />
           <div className="MCQListPage__body">

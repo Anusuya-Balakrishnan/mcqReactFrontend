@@ -6,6 +6,7 @@ import Login from "../login/Login";
 import { Navbar } from "../navbar/Navbar.jsx";
 import axios from "axios";
 import Context from "../Context.jsx";
+import Spinner from "../Spinner/Spinner.jsx";
 export function TestInstruction() {
   // getting value from useParams
   let { languageId, topicId, topicName } = useParams();
@@ -17,6 +18,7 @@ export function TestInstruction() {
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [totalTime, setTotalTime] = useState(0);
   const [totalMark, setTotalMark] = useState(0);
+  const [loading, setLoading] = useState(true);
   const { questions, setQuestions, isUserActive, setIsUserActive } =
     useContext(Context);
   const [questionsOnly, setQuestionsOnly] = useState({});
@@ -43,9 +45,12 @@ export function TestInstruction() {
         );
         setResponseData(response?.data?.data["questions"]);
         setQuestionsOnly(response?.data?.data["questions_values"]);
+
         setLevel(() => response?.data?.data["questions"][0]["level"]);
+        setLoading(false);
       } catch (error) {
         console.log("Error:", error);
+        setLoading(false);
       }
     };
 
@@ -84,7 +89,9 @@ export function TestInstruction() {
   };
   return (
     <>
-      {localStorage.getItem("token") ? (
+      {loading ? (
+        <Spinner />
+      ) : localStorage.getItem("token") ? (
         <section>
           <Navbar />
           <section>

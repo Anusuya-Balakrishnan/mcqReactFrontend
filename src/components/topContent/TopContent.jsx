@@ -4,6 +4,7 @@ import { Navbar } from "../navbar/Navbar";
 import Login from "../login/Login";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import Spinner from "../Spinner/Spinner";
 // import { useMyContext } from "../MyContext";
 export function TopContent() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export function TopContent() {
   let { id } = useParams();
   const [data, setData] = useState([]);
   const [topics, setTopics] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -26,8 +28,10 @@ export function TopContent() {
         });
 
         setData(response?.data?.topic);
+        setLoading(false);
       } catch (error) {
         console.log("Error:", error);
+        setLoading(false);
       }
     };
 
@@ -50,7 +54,9 @@ export function TopContent() {
   };
   return (
     <>
-      {localStorage.getItem("token") ? (
+      {loading ? (
+        <Spinner />
+      ) : localStorage.getItem("token") ? (
         <section>
           <Navbar />
 

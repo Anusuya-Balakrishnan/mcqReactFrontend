@@ -4,10 +4,12 @@ import Login from "../login/Login";
 import axios from "axios";
 import { Navbar } from "../navbar/Navbar";
 import winCup from "./image/trophy.png";
+import Spinner from "../Spinner/Spinner";
 function LeaderBoardPage() {
   const [resultData, setResultData] = useState();
   const [currentUserData, setCurrentUserData] = useState();
   const [currentUserId, setCurrentUserId] = useState(0);
+  const [loading, setLoading] = useState(true);
   const url = "https://mcqbackend.vercel.app/mcq/";
   useEffect(() => {
     const fetchData = async () => {
@@ -24,8 +26,12 @@ function LeaderBoardPage() {
         );
 
         setResultData(response?.data?.message);
+        // Set loading to false once data is fetched
+        setLoading(false);
       } catch (error) {
         console.log("Error:", error);
+        // Set loading to false once data is fetched
+        setLoading(false);
       }
     };
 
@@ -45,7 +51,9 @@ function LeaderBoardPage() {
   }, [resultData]);
   return (
     <>
-      {localStorage.getItem("token") ? (
+      {loading ? (
+        <Spinner />
+      ) : localStorage.getItem("token") ? (
         <>
           <Navbar />
           <section className="leaderboardPage">
