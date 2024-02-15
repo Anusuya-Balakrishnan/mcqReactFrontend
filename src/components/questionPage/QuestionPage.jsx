@@ -42,10 +42,9 @@ export function QuestionPage() {
   const [level, setLevel] = useState(questions["level"]);
   const [resultObject, setResultObject] = useState({});
   const [isSelected, setSelected] = useState(0);
-  const [timer, setTimer] = useState(10);
+  const [timer, setTimer] = useState({ minutes: 0, seconds: 0 });
   const [loading, setLoading] = useState(false);
-  const [mins, setMins] = useState(0);
-  const [seconds, setSeconds] = useState(0);
+
   const url = "https://mcqbackend.vercel.app/mcq/";
   useEffect(() => {
     setActualQuestions(questions.key || {});
@@ -55,15 +54,64 @@ export function QuestionPage() {
   useEffect(() => {
     if (id_list.length > 0 && actualQuestions[id_list[count]]) {
       setcurrentQuestion(actualQuestions[id_list[count]]);
-      setMins(id_list.length - 1);
-      setSeconds(60);
+      setTimer({
+        minutes: Math.floor(id_list.length - 1),
+        seconds: 59,
+      });
     }
   }, [id_list, count]);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (timer.minutes === 0 && timer.seconds === 0) {
+        // Time is up, stop the quiz and navigate to the result page
+        clearInterval(interval);
+        handleQuizCompletion();
+      } else {
+        setTimer((prevTimer) => {
+          if (prevTimer.seconds === 0) {
+            return { minutes: prevTimer.minutes - 1, seconds: 59 };
+          } else {
+            return { ...prevTimer, seconds: prevTimer.seconds - 1 };
+          }
+        });
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [timer]);
+
+  const handleQuizCompletion = () => {
+    // Stop the quiz and navigate to the result page
+    // Add any additional logic you need before navigating
+    for (let eachId of id_list) {
+      if (!resultList[eachId]) {
+        setResultList((prevResultList) => ({
+          ...prevResultList,
+          [eachId]: {
+            selectedAnswer: "time out",
+            isCorrect: false,
+          },
+        }));
+      }
+    }
+  };
+
+  useEffect(() => {
+    let lastId = id_list.length - 1;
+    if (resultList[id_list[lastId]]) {
+      setResultObject((resultObject) => ({
+        resultList: resultList,
+        topicId: topicIdData,
+        languageId: languageIdData,
+        level: level,
+      }));
+    }
+  }, [resultList]);
   function changeQuestionNumber() {
     // Move to the next question
 
-    if (count < id_list.length - 1 && isSelected === 0 && mins !== 0) {
+    if (count < id_list.length - 1 && isSelected === 0) {
       toast.info("Please select any one option");
     } else if (count < id_list.length - 1) {
       setSelected(0);
@@ -81,28 +129,6 @@ export function QuestionPage() {
     }
   }
 
-  // // Function to decrement the timer by 1 second
-  // const decrementTimer = () => {
-  //   if (seconds > 0) {
-  //     setSeconds((prevTimer) => prevTimer - 1);
-  //   }
-  // };
-
-  // // Effect to decrement the timer every second
-  // useEffect(() => {
-  //   const timerInterval = setInterval(decrementTimer, 1000);
-
-  //   // Clear the interval when the component unmounts or the timer reaches 0
-  //   return () => clearInterval(timerInterval);
-  // }, []);
-
-  // // Effect to handle actions when the timer reaches 0
-  // useEffect(() => {
-  //   if (seconds == 0) {
-  //     setMins((prevValue) => prevValue - 1);
-  //     setSeconds(60);
-  //   }
-  // }, [mins]);
   useEffect(() => {
     if (id_list.length > 0 && actualQuestions[id_list[count]]) {
       setcurrentQuestion(actualQuestions[id_list[count]]);
@@ -168,9 +194,8 @@ export function QuestionPage() {
       setResultContent(response?.data?.data);
 
       setQuestion_id(id_list);
-      if (isUserActive) {
-        sessionStorage.removeItem("isUserActive");
-      }
+
+      sessionStorage.removeItem("isUserActive");
       navigate("/resultPage");
     } catch (error) {
       console.log("Error:", error);
@@ -204,12 +229,14 @@ export function QuestionPage() {
                   <div>
                     {topicName}: {count + 1} of {id_list.length} Questions
                   </div>
-                  {/* <div className="Question_time">
-                  <span>
-                    <RiTimerLine />
-                  </span>
-                  {mins} mins:{seconds} secs
-                </div> */}
+                  <div className="Question_time">
+                    <span>
+                      <RiTimerLine />
+                    </span>
+                    {`${timer.minutes}:${
+                      timer.seconds < 10 ? `0${timer.seconds}` : timer.seconds
+                    }`}{" "}
+                  </div>
                 </div>
                 <div className="question-page__body">
                   <div className="question-page-content">
