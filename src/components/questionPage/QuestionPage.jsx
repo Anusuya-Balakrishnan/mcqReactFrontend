@@ -49,15 +49,15 @@ export function QuestionPage() {
   useEffect(() => {
     setActualQuestions(questions.key || {});
     setId_list(Object.keys(questions.key || {}));
+    setTimer({
+      minutes: Math.floor(Object.keys(questions.key || {}).length - 1),
+      seconds: 59,
+    });
   }, [questions.key]);
 
   useEffect(() => {
     if (id_list.length > 0 && actualQuestions[id_list[count]]) {
       setcurrentQuestion(actualQuestions[id_list[count]]);
-      setTimer({
-        minutes: Math.floor(id_list.length - 1),
-        seconds: 59,
-      });
     }
   }, [id_list, count]);
 
