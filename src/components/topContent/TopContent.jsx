@@ -75,7 +75,7 @@ export function TopContent() {
                     className="test-content__listElement"
                     key={index}
                     onClick={() => {
-                      userNaivagate(item.id, item.languageId, item.topicName);
+                      userNaivagate(item.languageId, item.id, item.topicName);
                     }}
                   >
                     {item.topicName}
