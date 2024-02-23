@@ -48,6 +48,7 @@ export function QuestionPage() {
   const url = "https://mcqbackend.vercel.app/mcq/";
   useEffect(() => {
     setActualQuestions(questions.key || {});
+    console.log(questions.key);
     setId_list(Object.keys(questions.key || {}));
     setTimer({
       minutes: Math.floor(Object.keys(questions.key || {}).length - 1),
@@ -215,6 +216,28 @@ export function QuestionPage() {
     }
   }, [resultObject, resultList, topicIdData, languageIdData, level]); // The effect will run whenever resultObject changes
 
+  // Function to replace code-like patterns with a styled component
+  const codeRegex = /`([^`]+)`/g;
+  const highlightCode = (text) => {
+    return text.split(codeRegex).map((part, index) => {
+      return index % 2 === 0 ? (
+        <span key={index}>{part}</span>
+      ) : (
+        <React.Fragment key={index}>
+          <br />
+          <code
+            style={{
+              backgroundColor: "#f4f4f4",
+              padding: "2px",
+              borderRadius: "3px",
+            }}
+          >
+            {part}
+          </code>
+        </React.Fragment>
+      );
+    });
+  };
   return (
     <>
       {localStorage.getItem("token") ? (
@@ -242,7 +265,8 @@ export function QuestionPage() {
                   <div className="question-page-content">
                     <form id="questionForm">
                       <span className="question-page-content__questions">
-                        {currentQuestion["question"] || ""}
+                        {highlightCode(currentQuestion["question"] || "")}
+                        {/* {currentQuestion["question"] || ""} */}
                       </span>
                       <div className="question-page-content__optionParent">
                         {currentQuestion["option"]

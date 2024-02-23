@@ -42,7 +42,7 @@
   padding: 20px 50px;
 }
 .leaderboardPage .leaderboard_table .leaderboard_item2 {
-  background-color: white;
+  background-color: rgba(158, 158, 158, 0.29);
   display: grid;
   grid-template-columns: 300px 600px 100px;
   text-align: left;
@@ -62,7 +62,7 @@
 }
 .leaderboardPage .leaderboard_table .currentUser {
   margin-bottom: 2px;
-  background-color: rgba(210, 210, 210, 0.29);
+  background-color: white;
 }
 
 @media (max-width: 1180px) {

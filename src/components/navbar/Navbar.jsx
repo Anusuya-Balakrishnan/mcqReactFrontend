@@ -10,7 +10,7 @@ import { MdOutlinePersonOutline } from "react-icons/md";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useLocation } from "react-router-dom";
-
+import Spinner from "../Spinner/Spinner";
 import axios from "axios";
 
 export function Navbar() {
@@ -18,9 +18,11 @@ export function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const [activePage, setActivePage] = useState("");
+  const [loading, setLoading] = useState(false);
   const url = "https://mcqbackend.vercel.app/mcq/";
   const logoutFunction = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await axios.post(
         `${url}userLogout/`,
@@ -32,12 +34,15 @@ export function Navbar() {
           },
         }
       );
-      console.log("Logout response:", response?.data);
-      localStorage.removeItem("token");
-      localStorage.removeItem("username");
-      console.log("Deleted successfully:", response?.data?.Message);
-      // Refresh the window
-      window.location.reload();
+      setLoading(false);
+      if (response?.data) {
+        console.log("Logout response:", response?.data);
+        localStorage.removeItem("token");
+        localStorage.removeItem("username");
+        console.log("Deleted successfully:", response?.data?.Message);
+        // Refresh the window
+        window.location.reload();
+      }
     } catch (error) {
       console.error("Error deleting resource:", error);
       // Refresh the window
@@ -52,90 +57,97 @@ export function Navbar() {
     setActivePage(pathname);
   }, [location.pathname]);
   return (
-    <section className="MCQListPage">
-      <div className="MCQ-Navbar">
-        <div
-          className="MCQ-logo"
-          onClick={() => {
-            navigate("/");
-          }}
-        >
-          <img src={newoaLogo} alt="" />
-        </div>
-        <ul className="mcq_secondChild">
-          <li
-            className="mcq_subchild"
-            style={{
-              backgroundColor:
-                activePage === "/home" || activePage === "/"
-                  ? "rgba(255, 255, 255, 0.069)"
-                  : "none",
+    <>
+      <section className="MCQListPage">
+        <div className="MCQ-Navbar">
+          <div
+            className="MCQ-logo"
+            onClick={() => {
+              navigate("/");
             }}
           >
-            <span
-              onClick={() => {
-                navigate("/home");
+            <img src={newoaLogo} alt="" />
+          </div>
+          <ul className="mcq_secondChild">
+            <li
+              className="mcq_subchild"
+              style={{
+                backgroundColor:
+                  activePage === "/home" || activePage === "/"
+                    ? "rgba(255, 255, 255, 0.069)"
+                    : "none",
               }}
             >
-              Home
-            </span>
-          </li>
-          {/* <li className="mcq_subchild">
-            <span>Dashboard</span>
-          </li> */}
-          <li
-            className="mcq_subchild"
-            style={{
-              backgroundColor:
-                activePage === "/leaderBoardPage"
-                  ? "rgba(255, 255, 255, 0.069)"
-                  : "none",
-            }}
-          >
-            <span
-              onClick={() => {
-                navigate("/leaderBoardPage");
+              <span
+                onClick={() => {
+                  navigate("/home");
+                }}
+              >
+                Home
+              </span>
+            </li>
+            {/* <li className="mcq_subchild">
+          <span>Dashboard</span>
+        </li> */}
+            <li
+              className="mcq_subchild"
+              style={{
+                backgroundColor:
+                  activePage === "/leaderBoardPage"
+                    ? "rgba(255, 255, 255, 0.069)"
+                    : "none",
               }}
             >
-              Leaderboard
-            </span>
-            <img src={medal} alt="medal" />
-          </li>
-          <li className="mcq_subchild mcq_personProfile">
-            <span> {userName[0].toUpperCase() + userName.slice(1)} </span>
-            <span className="icon">
-              <MdKeyboardArrowDown />
-            </span>
-            <ul>
+              <span
+                onClick={() => {
+                  navigate("/leaderBoardPage");
+                }}
+              >
+                Leaderboard
+              </span>
+              <img src={medal} alt="medal" />
+            </li>
+            <li className="mcq_subchild mcq_personProfile">
+              <span> {userName[0].toUpperCase() + userName.slice(1)} </span>
+              <span className="icon">
+                <MdKeyboardArrowDown />
+              </span>
+              <ul>
+                {/* <li>Edit Profile</li> */}
+                <li onClick={logoutFunction}>Logout</li>
+              </ul>
+            </li>
+          </ul>
+          <div className="sideMenu">
+            <AiOutlineMenu />
+            <ul className="sideMenu_option">
+              <li
+                onClick={() => {
+                  navigate("/home");
+                }}
+              >
+                Home
+              </li>
+              {/* <li>Dashboard</li> */}
+              <li
+                onClick={() => {
+                  navigate("/leaderBoardPage");
+                }}
+              >
+                Leaderboard
+              </li>
               {/* <li>Edit Profile</li> */}
               <li onClick={logoutFunction}>Logout</li>
             </ul>
-          </li>
-        </ul>
-        <div className="sideMenu">
-          <AiOutlineMenu />
-          <ul className="sideMenu_option">
-            <li
-              onClick={() => {
-                navigate("/home");
-              }}
-            >
-              Home
-            </li>
-            {/* <li>Dashboard</li> */}
-            <li
-              onClick={() => {
-                navigate("/leaderBoardPage");
-              }}
-            >
-              Leaderboard
-            </li>
-            {/* <li>Edit Profile</li> */}
-            <li onClick={logoutFunction}>Logout</li>
-          </ul>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+      {/* {loading ? (
+        <Spinner />
+      ) : (
+        
+      )} */}
+    </>
   );
 }
 

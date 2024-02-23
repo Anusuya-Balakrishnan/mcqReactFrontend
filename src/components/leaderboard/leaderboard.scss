@@ -41,7 +41,7 @@
                 }  
             }
             .leaderboard_item2{
-                background-color: white;
+                background-color: rgba(158, 158, 158, 0.29);
                 display: grid;
                 grid-template-columns: 300px 600px 100px;
                 text-align: left;
@@ -67,7 +67,8 @@
             }
             .currentUser{
                 margin-bottom: 2px;
-                background-color: rgba(210, 210, 210, 0.29);
+                background-color: white;
+                
                 // div{
                 //     display: flex;
                 //     justify-content: center;

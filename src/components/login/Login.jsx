@@ -7,13 +7,14 @@ import oaLogo from "./images/oceanacademyLogoWhite.svg";
 import { Home } from "../home/Home";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import Spinner from "../Spinner/Spinner";
 export default function Login() {
   const { registerId, setRegisterId } = useContext(Context);
   const navigate = useNavigate();
   const [user, setUser] = useState("");
   const userRef = useRef(null);
   const errorRef = useRef(null);
+  const [loading, setLoading] = useState(false);
   const url = "https://mcqbackend.vercel.app/mcq/";
 
   const [error, setError] = useState("");
@@ -44,28 +45,60 @@ export default function Login() {
 
   const result = async (e) => {
     e.preventDefault();
-    if (user) {
+    const pattern = /^OCNST\d{5}$/;
+    setLoading(true);
+    if (pattern.test(user)) {
       try {
-        const response = await axios.post(url + "custom_user_check/", {
+        const response1 = await axios.post(url + "custom_user_check/", {
           oceanRegisterNo: user,
         });
-        if (response?.data?.message) {
-          setRegisterId(user);
-          setError(false);
-          setErrorMessage("");
-          navigate("/passwordPage");
+        const response2 = await axios.post(
+          "https://us-central1-oa-admin-sms.cloudfunctions.net/app/v1/ocean/mcq/student",
+          {
+            regNo: user,
+          }
+        );
+
+        console.log(
+          "response2?.data?.studentStatus",
+          response2?.data?.studentStatus
+        );
+        setLoading(false);
+        if (response1?.data?.message) {
+          if (response2?.data?.studentStatus === "Learning") {
+            setRegisterId(user);
+            setError(false);
+            setErrorMessage("");
+
+            navigate("/passwordPage");
+          } else if (
+            response2?.data?.studentStatus === "completed" ||
+            response2?.data?.studentStatus === "Discontinued"
+          ) {
+            setError(false);
+            setErrorMessage("");
+            navigate("/signup");
+          }
         } else {
-          setError(true);
-          setErrorMessage("Invalid Register Number");
+          if (response2?.data?.studentStatus === "Learning") {
+            setError(false);
+            setErrorMessage("");
+            navigate("/signup");
+          } else if (response2?.data?.studentStatus === "Student not found") {
+            setError(false);
+            setErrorMessage("Invalid Register Number");
+          } else if (response2?.data?.studentStatus === "completed") {
+            setError(false);
+            setErrorMessage("");
+            navigate("/signup");
+          }
         }
+
         setUser("");
-        // localStorage.setItem("token", response?.data?.token);
-        // localStorage.setItem("username", response?.data?.user?.studentName);
-        // setToken(response?.data?.token);
-        // setError(false);
       } catch (error) {
         setUser("");
         setError(true);
+        setLoading(false);
         setErrorMessage("Invalid Register Number");
       }
     } else {
@@ -80,6 +113,8 @@ export default function Login() {
         <section>
           <Home />
         </section>
+      ) : loading ? (
+        <Spinner />
       ) : (
         <section>
           <div className="home-page">

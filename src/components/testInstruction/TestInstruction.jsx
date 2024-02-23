@@ -30,9 +30,6 @@ export function TestInstruction() {
     setLanguageIdData(languageId);
     settopicId(topicId);
     settopicName(topicName);
-    console.log("languageId", languageId);
-    console.log("topicId", topicId);
-    console.log("topicName", topicName);
   }, []);
   useEffect(() => {
     const fetchData = async () => {

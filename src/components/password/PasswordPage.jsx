@@ -7,6 +7,7 @@ import oaLogo from "./images/oceanacademyLogoWhite.svg";
 import { Home } from "../home/Home";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../Spinner/Spinner";
 function PasswordPage() {
   const { registerId, setRegisterId } = useContext(Context);
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ function PasswordPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
   };
@@ -36,6 +38,7 @@ function PasswordPage() {
 
   const result = async (e) => {
     e.preventDefault();
+    setLoading(true);
     if (password) {
       try {
         const response = await axios.post(url + "userLogin/", {
@@ -45,6 +48,7 @@ function PasswordPage() {
         setPassword("");
         setError(false);
         setErrorMessage("");
+        setLoading(false);
         if (response?.data?.message) {
           localStorage.setItem("token", response?.data?.token);
           localStorage.setItem("username", response?.data?.studentName);
@@ -58,6 +62,7 @@ function PasswordPage() {
       } catch (error) {
         setPassword("");
         setError(true);
+        setLoading(false);
         setErrorMessage("Invalid Password");
       }
     } else {
@@ -68,59 +73,63 @@ function PasswordPage() {
 
   return (
     <div>
-      <>
-        {localStorage.getItem("token") === null && (
-          <section>
-            <div className="home-page">
-              <div className="home-page__logo">
-                <img src={oaLogo} alt="" />
-              </div>
-              <div className="home-page__signin-box">
-                <form onSubmit={result}>
-                  <div className="home-page__sigin-box-title">SIGN IN</div>
-                  <div className="home-page__sigin-box-middleBox">
-                    <div className="passwordBox">
-                      <input
-                        className="passwordInput"
-                        // type="password"
-                        type={showPassword ? "text" : "password"}
-                        ref={passwordRef}
-                        onChange={(e) => {
-                          setPassword(e.target.value.toUpperCase());
-                        }}
-                        placeholder="Enter Password"
-                        name="password"
-                        value={password}
-                        autoComplete="OFF"
-                      />
-                      <div
-                        className="showPassword"
-                        onClick={handleTogglePassword}
-                      >
-                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          {localStorage.getItem("token") === null && (
+            <section>
+              <div className="home-page">
+                <div className="home-page__logo">
+                  <img src={oaLogo} alt="" />
+                </div>
+                <div className="home-page__signin-box">
+                  <form onSubmit={result}>
+                    <div className="home-page__sigin-box-title">SIGN IN</div>
+                    <div className="home-page__sigin-box-middleBox">
+                      <div className="passwordBox">
+                        <input
+                          className="passwordInput"
+                          // type="password"
+                          type={showPassword ? "text" : "password"}
+                          ref={passwordRef}
+                          onChange={(e) => {
+                            setPassword(e.target.value.toUpperCase());
+                          }}
+                          placeholder="Enter Password"
+                          name="password"
+                          value={password}
+                          autoComplete="OFF"
+                        />
+                        <div
+                          className="showPassword"
+                          onClick={handleTogglePassword}
+                        >
+                          {showPassword ? <FaEyeSlash /> : <FaEye />}
+                        </div>
+                        <br />
                       </div>
-                      <br />
+                      <div
+                        className="errorMessage"
+                        style={{
+                          color: "red",
+                          display: error ? "block" : "none",
+                        }}
+                      >
+                        {errorMessage}
+                      </div>
                     </div>
-                    <div
-                      className="errorMessage"
-                      style={{
-                        color: "red",
-                        display: error ? "block" : "none",
-                      }}
-                    >
-                      {errorMessage}
-                    </div>
-                  </div>
 
-                  <div className="sigin-box__button">
-                    <button className="button">Sign in</button>
-                  </div>
-                </form>
+                    <div className="sigin-box__button">
+                      <button className="button">Sign in</button>
+                    </div>
+                  </form>
+                </div>
               </div>
-            </div>
-          </section>
-        )}
-      </>
+            </section>
+          )}
+        </>
+      )}
     </div>
   );
 }

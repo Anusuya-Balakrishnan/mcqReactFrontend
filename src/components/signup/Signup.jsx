@@ -8,6 +8,7 @@ import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import signup from "./signup.css";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../Spinner/Spinner";
 
 export function Signup() {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ export function Signup() {
   const [success, setSuccess] = useState(false);
   const [token, setToken] = useState("");
   const userRef = useRef(null);
+  const [loading, setLoading] = useState(false);
   const url = "https://mcqbackend.vercel.app/mcq/";
   useEffect(() => {
     var retrievedToken = localStorage.getItem("token");
@@ -39,16 +41,24 @@ export function Signup() {
 
   const addUser = async (e) => {
     e.preventDefault();
+
     if (checkData()) {
       try {
-        const response = await axios.post(url + "users/", {
+        setLoading(true);
+        const response1 = await axios.post(url + "users/", {
           studentName: userName,
           mobileNumber: mobileNumber,
           oceanRegisterNo: oceanRegisterNo,
           email: email,
           password: password,
         });
-        setToken(response.data.token);
+        const response2 = await axios.post(
+          "https://us-central1-oa-admin-sms.cloudfunctions.net/app/v1/ocean/mcq/student",
+          {
+            regNo: oceanRegisterNo,
+          }
+        );
+        setToken(response1.data.token);
         setSuccess(true);
         setUserName("");
         setOceanRegisterNo("");
@@ -56,17 +66,30 @@ export function Signup() {
         setEmail("");
         setConfirmPassword("");
         setPassword("");
-        if (response?.data?.message === true) {
-          localStorage.setItem("token", response?.data?.token);
-          localStorage.setItem("username", response?.data?.user?.studentName);
-          toast.success("successfully registered");
-          navigate("/home");
+        setLoading(false);
+        if (response1?.data?.message === true) {
+          if (
+            response2?.data?.studentStatus === "Learning" ||
+            response2?.data?.studentStatus === "completed" ||
+            response2?.data?.studentStatus === "Discontinued"
+          ) {
+            localStorage.setItem("token", response1?.data?.token);
+            localStorage.setItem(
+              "username",
+              response1?.data?.user?.studentName
+            );
+            toast.success("successfully registered");
+            navigate("/home");
+          } else if (response2?.data?.studentStatus === "Student not found") {
+            toast.info("Invalid Register Number");
+          }
         } else {
           setSuccess(false);
           toast.info("Ocean register number is already in use");
         }
       } catch (error) {
         console.log("error", error);
+        setLoading(false);
       }
     }
   };
@@ -129,102 +152,106 @@ export function Signup() {
   return (
     <>
       {!(success || Boolean(token)) ? (
-        <section id="CreateAccount">
-          <div className="sign-up-block">
-            <div className="sign-up-heading">
-              <h1>Join Us Today!</h1>
-              <p>Sign Up Now to Become a Member</p>
-            </div>
-            <form onSubmit={addUser}>
-              <div className="sign-up-block-form">
-                <div className="sign-up-block-form-content">
-                  <input
-                    className="signup-Input"
-                    type="text"
-                    ref={userRef}
-                    placeholder="Ocean Register No"
-                    onChange={(e) => {
-                      setOceanRegisterNo(e.target.value.toUpperCase());
-                    }}
-                    value={oceanRegisterNo}
-                  />
-                  <br />
-                  <input
-                    className="signup-Input"
-                    type="text"
-                    placeholder="Enter your Full Name"
-                    onChange={(e) => {
-                      setUserName(e.target.value);
-                    }}
-                    value={userName}
-                  />
-                  <br />
+        loading ? (
+          <Spinner />
+        ) : (
+          <section id="CreateAccount">
+            <div className="sign-up-block">
+              <div className="sign-up-heading">
+                <h1>Join Us Today!</h1>
+                <p>Sign Up Now to Become a Member</p>
+              </div>
+              <form onSubmit={addUser}>
+                <div className="sign-up-block-form">
+                  <div className="sign-up-block-form-content">
+                    <input
+                      className="signup-Input"
+                      type="text"
+                      ref={userRef}
+                      placeholder="Ocean Register No"
+                      onChange={(e) => {
+                        setOceanRegisterNo(e.target.value.toUpperCase());
+                      }}
+                      value={oceanRegisterNo}
+                    />
+                    <br />
+                    <input
+                      className="signup-Input"
+                      type="text"
+                      placeholder="Enter your Full Name"
+                      onChange={(e) => {
+                        setUserName(e.target.value);
+                      }}
+                      value={userName}
+                    />
+                    <br />
 
-                  <input
-                    type="tel"
-                    className="signup-Input"
-                    placeholder="Enter your Mobile Number"
-                    name="mobileNumber"
-                    autoComplete="off"
-                    onChange={(e) => {
-                      setMobileNumber(e.target.value);
-                    }}
-                    value={mobileNumber}
-                  />
-                  <br />
-                  <input
-                    className="signup-Input"
-                    type="email"
-                    placeholder="Enter your Email Id"
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                    }}
-                    name={email}
-                  />
-                  <br />
-                  <input
-                    className="signup-Input"
-                    type="password"
-                    placeholder="Enter new password"
-                    onChange={(e) => {
-                      setPassword(e.target.value);
-                    }}
-                    name={password}
-                  />
+                    <input
+                      type="tel"
+                      className="signup-Input"
+                      placeholder="Enter your Mobile Number"
+                      name="mobileNumber"
+                      autoComplete="off"
+                      onChange={(e) => {
+                        setMobileNumber(e.target.value);
+                      }}
+                      value={mobileNumber}
+                    />
+                    <br />
+                    <input
+                      className="signup-Input"
+                      type="email"
+                      placeholder="Enter your Email Id"
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                      }}
+                      name={email}
+                    />
+                    <br />
+                    <input
+                      className="signup-Input"
+                      type="password"
+                      placeholder="Enter new password"
+                      onChange={(e) => {
+                        setPassword(e.target.value);
+                      }}
+                      name={password}
+                    />
 
-                  <br />
-                  <input
-                    className="signup-Input"
-                    type="password"
-                    placeholder="Enter Confirm password"
-                    onChange={(e) => {
-                      setConfirmPassword(e.target.value);
-                    }}
-                    name={confirmPassword}
-                  />
+                    <br />
+                    <input
+                      className="signup-Input"
+                      type="password"
+                      placeholder="Enter Confirm password"
+                      onChange={(e) => {
+                        setConfirmPassword(e.target.value);
+                      }}
+                      name={confirmPassword}
+                    />
 
-                  <br />
+                    <br />
+                  </div>
                 </div>
-              </div>
-              <div className="sign-up__button">
-                <button className="btn">Sign Up</button>
-              </div>
-              <ToastContainer
-                position="top-center"
-                autoClose={5000}
-                hideProgressBar
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss={false}
-                draggable
-                pauseOnHover
-                theme="dark"
-                transition={Bounce} // Corrected syntax
-              />
-            </form>
-          </div>
-        </section>
+                <div className="sign-up__button">
+                  <button className="btn">Sign Up</button>
+                </div>
+                <ToastContainer
+                  position="top-center"
+                  autoClose={5000}
+                  hideProgressBar
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss={false}
+                  draggable
+                  pauseOnHover
+                  theme="dark"
+                  transition={Bounce} // Corrected syntax
+                />
+              </form>
+            </div>
+          </section>
+        )
       ) : (
         <>
           <Home />
