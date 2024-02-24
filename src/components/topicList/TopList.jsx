@@ -70,6 +70,7 @@ export function TopList() {
                     <div
                       key={index}
                       onClick={() => {
+                        localStorage.setItem("language", item.languageName);
                         contentNavigate(item.id);
                       }}
                     >

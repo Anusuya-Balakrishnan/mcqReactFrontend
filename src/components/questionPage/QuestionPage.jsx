@@ -13,6 +13,8 @@ import { RiTimerLine } from "react-icons/ri";
 import { ResultPage } from "../resultPage/ResultPage";
 import { NavbarForQuiz } from "../navbar/NavbarForQuiz";
 import Spinner from "../Spinner/Spinner";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { darcula } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 export function QuestionPage() {
   // data from test instruction page
@@ -265,9 +267,20 @@ export function QuestionPage() {
                   <div className="question-page-content">
                     <form id="questionForm">
                       <span className="question-page-content__questions">
-                        {highlightCode(currentQuestion["question"] || "")}
-                        {/* {currentQuestion["question"] || ""} */}
+                        {/* {highlightCode(currentQuestion["question"] || "")} */}
+                        {currentQuestion["question"] || ""}
                       </span>
+                      {currentQuestion["code"] && (
+                        <SyntaxHighlighter
+                          language={localStorage
+                            .getItem("language")
+                            .toLowerCase()}
+                          style={darcula}
+                        >
+                          {currentQuestion["code"] || ""}
+                        </SyntaxHighlighter>
+                      )}
+
                       <div className="question-page-content__optionParent">
                         {currentQuestion["option"]
                           ? currentQuestion["option"].map((item, index) => (
