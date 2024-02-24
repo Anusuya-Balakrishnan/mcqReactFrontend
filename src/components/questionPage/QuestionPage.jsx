@@ -122,7 +122,7 @@ export function QuestionPage() {
       setCurrentAnswer(null);
     } else {
       // Add the result value for the current question
-
+      setLoading(true);
       setResultObject((resultObject) => ({
         resultList: resultList,
         topicId: topicIdData,
@@ -178,6 +178,7 @@ export function QuestionPage() {
     }
   }, [isUserActive]);
   const postResultData = async () => {
+    setLoading(true);
     try {
       const response = await axios.post(
         `${url}add_resultData/`,
@@ -213,33 +214,10 @@ export function QuestionPage() {
       resultObject.languageId &&
       resultObject.level
     ) {
-      setLoading(true);
       postResultData();
     }
   }, [resultObject, resultList, topicIdData, languageIdData, level]); // The effect will run whenever resultObject changes
 
-  // Function to replace code-like patterns with a styled component
-  const codeRegex = /`([^`]+)`/g;
-  const highlightCode = (text) => {
-    return text.split(codeRegex).map((part, index) => {
-      return index % 2 === 0 ? (
-        <span key={index}>{part}</span>
-      ) : (
-        <React.Fragment key={index}>
-          <br />
-          <code
-            style={{
-              backgroundColor: "#f4f4f4",
-              padding: "2px",
-              borderRadius: "3px",
-            }}
-          >
-            {part}
-          </code>
-        </React.Fragment>
-      );
-    });
-  };
   return (
     <>
       {localStorage.getItem("token") ? (
@@ -311,8 +289,9 @@ export function QuestionPage() {
                         type="button"
                         className="question-page-content__submit"
                         name="submit"
+                        onClick={changeQuestionNumber}
                       >
-                        <div onClick={changeQuestionNumber}> next </div>
+                        <div> next </div>
                       </button>
                       <ToastContainer
                         position="top-center"
