@@ -25,7 +25,7 @@
 .test-content__parent .test-content__heading .test-content {
   color: #535353;
   font-size: 20px;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 .test-content__parent .test-content-lists {
   padding: 10px;
@@ -42,14 +42,31 @@
   padding: 10px;
   margin: 20px;
   border-radius: 10px;
-  border: 2px solid #2D81F7;
+  border: 2px solid #072c50;
   cursor: pointer;
   text-decoration: none;
-  color: #2D81F7;
+  color: #072c50;
+  display: flex;
+  justify-content: space-between;
 }
-.test-content__parent .test-content-lists .test-content__listElement:hover {
-  background-color: #2D81F7;
+.test-content__parent .test-content-lists .test-content__listElement .statusIcon {
+  font-size: 20px;
+}
+.test-content__parent .test-content-lists .topiccompleted {
+  background-color: #17CA53;
+  border: 2px solid #17CA53;
   color: white;
+  font-weight: 500;
+}
+.test-content__parent .test-content-lists .topicproceed {
+  background-color: #4CA2F9;
+  border: 2px solid #4CA2F9;
+  color: white;
+}
+.test-content__parent .test-content-lists .topiclock {
+  background-color: #F5F5F5;
+  color: #5D5D5D;
+  border: 2px solid #5D5D5D;
 }
 
 @media (max-width: 1050px) {

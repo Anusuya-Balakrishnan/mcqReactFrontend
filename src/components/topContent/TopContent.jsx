@@ -5,6 +5,11 @@ import Login from "../login/Login";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import Spinner from "../Spinner/Spinner";
+import { LiaCheckDoubleSolid } from "react-icons/lia";
+import { AiOutlineLock, AiFillLock } from "react-icons/ai";
+import { ImUnlocked, ImLock } from "react-icons/im";
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import { useMyContext } from "../MyContext";
 export function TopContent() {
   const navigate = useNavigate();
@@ -49,8 +54,12 @@ export function TopContent() {
     setTopics(array);
   }, [data]);
 
-  const userNaivagate = (languageId, topicId, topicName) => {
-    navigate(`/testInstruction/${languageId}/${topicId}/${topicName}`);
+  const userNaivagate = (languageId, topicId, topicName, status) => {
+    if (status == "completed" || status == "proceed") {
+      navigate(`/testInstruction/${languageId}/${topicId}/${topicName}`);
+    } else {
+      toast.info("you need to unlock");
+    }
   };
   return (
     <>
@@ -72,15 +81,43 @@ export function TopContent() {
               <div className="test-content-lists">
                 {topics.map((item, index) => (
                   <div
-                    className="test-content__listElement"
+                    className={`test-content__listElement topic${item.status}`}
                     key={index}
                     onClick={() => {
-                      userNaivagate(item.languageId, item.id, item.topicName);
+                      userNaivagate(
+                        item.languageId,
+                        item.id,
+                        item.topicName,
+                        item.status
+                      );
                     }}
                   >
-                    {item.topicName}
+                    <p> {item.topicName}</p>
+                    <p
+                      className="statusIcon"
+                      // style={{
+                      //   color: `${item.status == "completed" && "#67FF64"}`,
+                      // }}
+                    >
+                      {item.status == "completed" && <LiaCheckDoubleSolid />}
+                      {item.status == "lock" && <ImLock />}
+                      {item.status == "proceed" && <ImUnlocked />}
+                    </p>
                   </div>
                 ))}
+                <ToastContainer
+                  position="top-center"
+                  autoClose={5000}
+                  hideProgressBar
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss={false}
+                  draggable
+                  pauseOnHover
+                  theme="dark"
+                  transition={Bounce} // Corrected syntax
+                />
               </div>
             </div>
           )}
