@@ -40,6 +40,7 @@
                 margin: 50px;
                 
                 .question-page-content__options{
+                    background-color: red;
                     min-width: 400px;
                     width: auto;
                     padding: 20px;
@@ -94,7 +95,7 @@
                     .question-page-content__optionParent{
                         margin: 10px;
                         .question-page-content__options{
-                            background-color: red;
+                            // background-color: red;
                             width: 80%;
                         }
                 }

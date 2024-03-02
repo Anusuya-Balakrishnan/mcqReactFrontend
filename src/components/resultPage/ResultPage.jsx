@@ -11,6 +11,7 @@ import { Navbar } from "../navbar/Navbar";
 import { ClipLoader } from "react-spinners";
 
 export function ResultPage() {
+  const url = "https://mcqbackend.vercel.app/mcq/";
   const {
     questions,
     setQuestions,
@@ -22,6 +23,10 @@ export function ResultPage() {
     setResultContent,
     newUserToQuiz,
     setNewUserToQuiz,
+    answeredQuestions,
+    setAnsweredQuestions,
+    finalResult,
+    setFinalResult,
   } = useContext(Context);
   const [resultValue, setResultValue] = useState();
   const navigate = useNavigate();
@@ -123,6 +128,29 @@ export function ResultPage() {
       return "You can do better! Take some time to review and try again.";
     }
   };
+
+  const getResultValue = async () => {
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/mcq/showResult/",
+        // `${url}showResult/`,
+        {
+          answeredQuestions: answeredQuestions,
+        },
+        {
+          headers: {
+            Authorization: `Token ${localStorage.getItem("token")}`,
+            // You can include other headers as needed
+          },
+        }
+      );
+      setFinalResult(response?.data?.data);
+
+      navigate("/result");
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
   return (
     <>
       {localStorage.getItem("token") ? (
@@ -172,6 +200,9 @@ export function ResultPage() {
                       </span>
                     </li>
                   </ul>
+                  <button className="viewResult" onClick={getResultValue}>
+                    View Result
+                  </button>
                 </div>
 
                 <div class="resultPage__body_image">

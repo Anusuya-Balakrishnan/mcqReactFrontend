@@ -29,6 +29,8 @@ export function QuestionPage() {
     setResultContent,
     newUserToQuiz,
     setNewUserToQuiz,
+    answeredQuestions,
+    setAnsweredQuestions,
   } = useContext(Context);
   const navigate = useNavigate();
   let { topicName } = useParams();
@@ -46,11 +48,12 @@ export function QuestionPage() {
   const [isSelected, setSelected] = useState(0);
   const [timer, setTimer] = useState({ minutes: 0, seconds: 0 });
   const [loading, setLoading] = useState(false);
+  const [iscompleted, SetCompleted] = useState(false);
 
   const url = "https://mcqbackend.vercel.app/mcq/";
   useEffect(() => {
     setActualQuestions(questions.key || {});
-    console.log(questions.key);
+
     setId_list(Object.keys(questions.key || {}));
     setTimer({
       minutes: Math.floor(Object.keys(questions.key || {}).length - 1),
@@ -98,11 +101,13 @@ export function QuestionPage() {
         }));
       }
     }
+    SetCompleted(true);
   };
 
   useEffect(() => {
     let lastId = id_list.length - 1;
     if (resultList[id_list[lastId]]) {
+      setAnsweredQuestions(resultList);
       setResultObject((resultObject) => ({
         resultList: resultList,
         topicId: topicIdData,
@@ -113,7 +118,7 @@ export function QuestionPage() {
   }, [resultList]);
   function changeQuestionNumber() {
     // Move to the next question
-
+    console.log("Hello");
     if (count < id_list.length - 1 && isSelected === 0) {
       toast.info("Please select any one option");
     } else if (count < id_list.length - 1) {
@@ -122,7 +127,8 @@ export function QuestionPage() {
       setCurrentAnswer(null);
     } else {
       // Add the result value for the current question
-      setLoading(true);
+      console.log(count);
+      SetCompleted(true);
       setResultObject((resultObject) => ({
         resultList: resultList,
         topicId: topicIdData,
@@ -168,7 +174,6 @@ export function QuestionPage() {
   useEffect(() => {
     if (isUserActive === false) {
       // Add the result value for the current question
-
       setResultObject((resultObject) => ({
         resultList: resultList,
         topicId: topicIdData,
@@ -176,6 +181,7 @@ export function QuestionPage() {
         level: level,
       }));
     }
+    SetCompleted(true);
   }, [isUserActive]);
   const postResultData = async () => {
     setLoading(true);
@@ -198,13 +204,14 @@ export function QuestionPage() {
       setResultContent(response?.data?.data);
 
       setQuestion_id(id_list);
-
+      setLoading(false);
       sessionStorage.removeItem("isUserActive");
       navigate("/resultPage");
     } catch (error) {
       console.log("Error:", error);
     }
   };
+
   useEffect(() => {
     // Check if resultObject is not null and has the necessary properties
     if (
@@ -212,11 +219,13 @@ export function QuestionPage() {
       resultObject.resultList &&
       resultObject.topicId &&
       resultObject.languageId &&
-      resultObject.level
+      resultObject.level &&
+      iscompleted
     ) {
+      console.log("iscompleted", iscompleted);
       postResultData();
     }
-  }, [resultObject, resultList, topicIdData, languageIdData, level]); // The effect will run whenever resultObject changes
+  }, [iscompleted]); // The effect will run whenever resultObject changes
 
   return (
     <>
@@ -279,7 +288,13 @@ export function QuestionPage() {
                                       : "#072c50",
                                 }}
                               >
-                                <div key={index}>{item}</div>
+                                <div key={index}>
+                                  <span style={{}}>
+                                    {index == 0 && "A"} {index == 1 && "B"}{" "}
+                                    {index == 2 && "C"} {index == 3 && "D"}
+                                  </span>
+                                  {item}
+                                </div>
                               </div>
                             ))
                           : ""}

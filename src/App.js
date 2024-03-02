@@ -17,6 +17,7 @@ import Context from "./components/Context.jsx";
 import LeaderBoardPage from "./components/leaderboard/LeaderBoardPage.jsx";
 import PasswordPage from "./components/password/PasswordPage.jsx";
 import { NavbarForQuiz } from "./components/navbar/NavbarForQuiz.jsx";
+import ShowResult from "./components/questionPage/ShowResult.jsx";
 
 function App() {
   const contextValue = useContext(Context);
@@ -26,6 +27,8 @@ function App() {
   const [isUserActive, setIsUserActive] = useState();
   const [newUserToQuiz, setNewUserToQuiz] = useState(false);
   const [resultContent, setResultContent] = useState({});
+  const [answeredQuestions, setAnsweredQuestions] = useState({});
+  const [finalResult, setFinalResult] = useState([]);
   return (
     <div className="App">
       <BrowserRouter>
@@ -43,6 +46,10 @@ function App() {
             setResultContent,
             newUserToQuiz,
             setNewUserToQuiz,
+            answeredQuestions,
+            setAnsweredQuestions,
+            finalResult,
+            setFinalResult,
           }}
         >
           <Routes>
@@ -60,6 +67,7 @@ function App() {
             <Route path="/resultPage" element={<ResultPage />} />
             <Route path="/leaderBoardPage" element={<LeaderBoardPage />} />
             <Route path="/quiz" element={<NavbarForQuiz />} />
+            <Route path="/result" element={<ShowResult />} />
           </Routes>
         </Context.Provider>
       </BrowserRouter>

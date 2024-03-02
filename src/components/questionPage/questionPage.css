@@ -42,6 +42,7 @@
   margin: 50px;
 }
 .question-page .question-page__body .question-page-content .question-page-content__optionParent .question-page-content__options {
+  background-color: red;
   min-width: 400px;
   width: auto;
   padding: 20px;
@@ -82,7 +83,6 @@
     margin: 10px;
   }
   .question-page .question-page__body .question-page-content .question-page-content__optionParent .question-page-content__options {
-    background-color: red;
     width: 80%;
   }
 }
