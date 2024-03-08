@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins";
+  box-sizing: border-box;
+}
+
+.questionContainer {
+  text-align: left;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 50px;
+}
+.questionContainer .questionName {
+  display: flex;
+  justify-content: space-evenly;
+  align-self: center;
+  margin: 20px 0;
+  border-bottom: 1px solid black;
+}
+.questionContainer .questionName .questionNameBlock {
+  font-size: 20px;
+}
+.questionContainer .questionName .questionNameBlock span {
+  margin-right: 8px;
+}
+.questionContainer .questionName p {
+  font-size: 20px;
+}
+.questionContainer .questionBody {
+  margin-top: 50px;
+  margin-left: 250px;
+  width: auto;
+}
+.questionContainer .questionBody .options {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.questionContainer .questionBody .options .optionBlock {
+  margin: 20px 0;
+  display: flex;
+}
+.questionContainer .questionBody .options .optionBlock .optionContainer {
+  background-color: #D9D9D9;
+  color: #072c50;
+  padding: 0;
+  height: auto;
+  width: auto;
+  border-radius: 20px;
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.questionContainer .questionBody .options .optionBlock .optionContainer .option {
+  padding: 10px;
+}
+.questionContainer .questionBody .options .optionBlock .optionContainer .option span {
+  float: left;
+  margin-right: 5px;
+  border: 2px solid white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.questionContainer .questionBody .options .optionBlock .correctAnswer {
+  color: white;
+  padding: 10px 15px;
+  background-color: #17CA53;
+  border-radius: 20px;
+}
+.questionContainer .questionBody .options .optionBlock .wrongAnswer {
+  color: white;
+  padding: 10px 15px;
+  background-color: #FF6868;
+  border-radius: 20px;
+}
+.questionContainer .questionBody .questionChangeButton {
+  display: flex;
+}
+
+@media (max-width: 1040px) {
+  .questionContainer .questionBody {
+    margin: 0;
+  }
+}
+@media (max-width: 600px) {
+  .questionContainer {
+    padding: 10px;
+  }
+  .questionContainer .questionName .questionNameBlock {
+    font-size: 120%;
+  }
+  .questionContainer .questionName .questionNameBlock span {
+    margin-right: 8px;
+  }
+  .questionContainer .questionName p {
+    font-size: 120%;
+  }
+  .questionContainer .questionBody .options .optionBlock {
+    font-size: 100%;
+  }
+  .questionContainer .questionBody .options .optionBlock .optionContainer {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    height: auto;
+  }
+  .questionContainer .questionBody .options .optionBlock .optionContainer span {
+    margin-right: 2px;
+  }
+  .questionContainer .questionBody .options .optionBlock .optionContainer .option {
+    padding: 10px;
+  }
+  .questionContainer .questionBody .options .optionBlock .optionContainer .option span {
+    float: left;
+    margin-right: 5px;
+  }
+  .questionContainer .questionBody .options .optionBlock .correctAnswer {
+    display: none;
+  }
+  .questionContainer .questionBody .options .optionBlock .wrongAnswer {
+    display: none;
+  }
+}/*# sourceMappingURL=showResultStyle.css.map */

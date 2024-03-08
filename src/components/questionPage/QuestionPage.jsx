@@ -3,6 +3,7 @@ import React, { useEffect, useContext, useState } from "react";
 import Context from "../Context";
 import Login from "../login/Login";
 import { Navbar } from "../navbar/Navbar";
+import Button from "./Button";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import questionPage from "./questionPage.css";
@@ -129,6 +130,7 @@ export function QuestionPage() {
       // Add the result value for the current question
       console.log(count);
       SetCompleted(true);
+
       setResultObject((resultObject) => ({
         resultList: resultList,
         topicId: topicIdData,
@@ -225,7 +227,7 @@ export function QuestionPage() {
       console.log("iscompleted", iscompleted);
       postResultData();
     }
-  }, [iscompleted]); // The effect will run whenever resultObject changes
+  }, [iscompleted, resultObject]); // The effect will run whenever resultObject changes
 
   return (
     <>
@@ -300,14 +302,13 @@ export function QuestionPage() {
                           : ""}
                       </div>
 
-                      <button
+                      <div
                         type="button"
-                        className="question-page-content__submit"
                         name="submit"
                         onClick={changeQuestionNumber}
                       >
-                        <div> next </div>
-                      </button>
+                        <Button name="next" />
+                      </div>
                       <ToastContainer
                         position="top-center"
                         autoClose={5000}

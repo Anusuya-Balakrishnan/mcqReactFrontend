@@ -132,8 +132,8 @@ export function ResultPage() {
   const getResultValue = async () => {
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/mcq/showResult/",
-        // `${url}showResult/`,
+        // "http://127.0.0.1:8000/mcq/showResult/",
+        `${url}showResult/`,
         {
           answeredQuestions: answeredQuestions,
         },

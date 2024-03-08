@@ -58,8 +58,10 @@
 .question-page .question-page__body .question-page-content .question-page-content__optionParent .question-page-content__options:hover {
   background-color: rgb(126, 126, 126);
 }
-.question-page .question-page__body .question-page-content .question-page-content__submit {
-  margin-top: 20px;
+
+.question-page-content__submit {
+  display: inline-block;
+  margin: 10px 20px;
   padding: 10px 40px;
   border: 0;
   background-color: #2D81F7;
@@ -67,8 +69,8 @@
   font-size: 18px;
   color: white;
 }
-.question-page .question-page__body .question-page-content .question-page-content__submit:hover {
-  background-color: green;
+.question-page-content__submit:hover {
+  background-color: #4CA2F9;
   cursor: pointer;
 }
 
@@ -106,7 +108,7 @@
     min-width: 50px;
     font-size: 90%;
   }
-  .question-page .question-page__body .question-page-content .question-page-content__submit {
-    padding: 10px 30px;
-  }
+}
+.question-page-content__submit {
+  padding: 10px 30px;
 }/*# sourceMappingURL=questionPage.css.map */
