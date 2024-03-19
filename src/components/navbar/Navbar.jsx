@@ -86,9 +86,23 @@ export function Navbar() {
                 Home
               </span>
             </li>
-            {/* <li className="mcq_subchild">
-          <span>Dashboard</span>
-        </li> */}
+            <li
+              className="mcq_subchild"
+              style={{
+                backgroundColor:
+                  activePage === "/dashboard"
+                    ? "rgba(255, 255, 255, 0.069)"
+                    : "none",
+              }}
+            >
+              <span
+                onClick={() => {
+                  navigate("/dashboard");
+                }}
+              >
+                Dashboard
+              </span>
+            </li>
             <li
               className="mcq_subchild"
               style={{
@@ -128,7 +142,13 @@ export function Navbar() {
               >
                 Home
               </li>
-              {/* <li>Dashboard</li> */}
+              <li
+                onClick={() => {
+                  navigate("/dashboard");
+                }}
+              >
+                Dashboard
+              </li>
               <li
                 onClick={() => {
                   navigate("/leaderBoardPage");

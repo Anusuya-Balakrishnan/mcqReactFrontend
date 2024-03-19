@@ -4,17 +4,17 @@ import { GrLinkNext } from "react-icons/gr";
 import { GrLinkPrevious } from "react-icons/gr";
 
 function Button(props) {
-  const iconMap = {
-    next: GrLinkNext,
-    previous: GrLinkPrevious,
+  // const iconMap = {
+  //   next: GrLinkNext,
+  //   previous: GrLinkPrevious,
 
-    // Add more icon mappings as needed
-  };
-  const SelectedIcon = iconMap[props.iconName];
+  //   // Add more icon mappings as needed
+  // };
+  // const SelectedIcon = iconMap[props.iconName];
   return (
     <div className="question-page-content__submit">
       <div> {props.name}</div>
-      <SelectedIcon />
+      {/* <SelectedIcon /> */}
     </div>
   );
 }
