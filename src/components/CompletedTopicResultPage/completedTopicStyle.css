@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins";
+  box-sizing: border-box;
+}
+
+.completedTopic_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  flex-direction: column;
+}
+.completedTopic_container .container_child1 {
+  background-color: rgba(224, 224, 224, 0.491);
+  width: 850px;
+  border-radius: 10px;
+  margin: 50px 0;
+  padding: 30px;
+}
+.completedTopic_container .container_child1 .child1_title {
+  padding: 10px 20px;
+  background-color: #072c50;
+  display: inline-block;
+  color: white;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+.completedTopic_container .container_child1 .child1_range .range_scale {
+  width: 100%;
+  position: relative;
+  height: 15px;
+  margin: 10px 0;
+  border-radius: 20px;
+  background-color: white;
+}
+.completedTopic_container .container_child1 .child1_range .range_scale .range_scale_child {
+  width: 90%;
+  height: 100%;
+  border-radius: 20px;
+  background-color: #4CA2F9;
+}
+.completedTopic_container .container_child1 .child1_range .title_content {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.completedTopic_container .container_child1 .child1_range .title_content div {
+  color: #072c50;
+}
+.completedTopic_container .container_child1 .child1_range .title_content .percent {
+  color: #4CA2F9;
+}
+.completedTopic_container .container_child2 {
+  background-color: rgba(224, 224, 224, 0.491);
+  width: 850px;
+  border-radius: 10px;
+}
+.completedTopic_container .container_child2 .child2_title {
+  font-size: 28px;
+  padding: 10px;
+}
+.completedTopic_container .container_child2 .child2_content {
+  width: 100%;
+}
+.completedTopic_container .container_child2 .child2_content .each_content {
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}/*# sourceMappingURL=completedTopicStyle.css.map */

@@ -1,0 +1,81 @@
+@use "../variables" as *;
+
+.completedTopic_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    flex-direction: column;
+    .container_child1{
+        background-color: rgba(224, 224, 224, 0.491);
+        width: 850px;
+        border-radius: 10px;
+        margin: 50px 0;
+        padding: 30px;
+        .child1_title{
+            padding: 10px 20px;
+            background-color: $newBg_color;
+            display: inline-block;
+            color:white;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .child1_range{
+            .range_scale{
+                width: 100%;
+                position: relative;
+                height: 15px;
+                margin: 10px 0;
+                border-radius: 20px;
+                background-color: white;
+                .range_scale_child{
+                    width: 90%;
+                    height: 100%;
+                    // background-color: red;
+                    border-radius: 20px;
+                    background-color: $newBtn;
+
+                }
+            }
+            .title_content{
+                margin: 10px 0;
+                display: flex;
+                justify-content: space-between;
+                div{
+                    color:$newBg_color;
+                }
+            .percent{
+                color:$newBtn;
+            }
+            }
+           
+        }
+    }
+    .container_child2{
+        background-color: rgba(224, 224, 224, 0.491);
+        width: 850px;
+        border-radius: 10px;
+        .child2_title{
+            font-size: 28px;
+            padding: 10px;
+        }
+        .child2_content{
+            width: 100%;
+            .each_content{
+                padding: 0 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+    
+        }
+    }
+}
+
+@media (max-width:850px){
+    .completedTopic_container{
+        .container_child1{
+            
+        }
+    }
+}

@@ -74,7 +74,7 @@ export function Home() {
               </div>
               <div className="MCQ-lists">
                 {mcqList.map((item, index) => (
-                  <div className="MCQ-lists_subParent">
+                  <div className="MCQ-lists_subParent" key={index}>
                     <div
                       className="MCQ-list__Each-test"
                       key={index}

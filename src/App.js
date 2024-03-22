@@ -19,6 +19,7 @@ import PasswordPage from "./components/password/PasswordPage.jsx";
 import { NavbarForQuiz } from "./components/navbar/NavbarForQuiz.jsx";
 import ShowResult from "./components/questionPage/ShowResult.jsx";
 import DashBoard from "./components/dashboard/DashBoard.jsx";
+import CompletedTopic from "./components/CompletedTopicResultPage/CompletedTopic.jsx";
 
 function App() {
   const contextValue = useContext(Context);
@@ -70,6 +71,10 @@ function App() {
             <Route path="/quiz" element={<NavbarForQuiz />} />
             <Route path="/result" element={<ShowResult />} />
             <Route path="/dashboard" element={<DashBoard />} />
+            <Route
+              path="/dashboardPageResult/:languageId"
+              element={<CompletedTopic />}
+            />
           </Routes>
         </Context.Provider>
       </BrowserRouter>

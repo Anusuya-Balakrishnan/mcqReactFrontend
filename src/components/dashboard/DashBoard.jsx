@@ -8,15 +8,16 @@ import axios from "axios";
 import Button from "../questionPage/Button";
 import Spinner from "../Spinner/Spinner";
 import Login from "../login/Login";
+import { useNavigate } from "react-router-dom";
 // import Slider from "rc-slider";
 // import "rc-slider/assets/index.css"; // Import default styles for rc-slider
 
 function DashBoard() {
+  const navigate = useNavigate();
   const str =
     localStorage.getItem("username")[0].toUpperCase() +
     localStorage.getItem("username").slice(1);
   const [userName, setUserName] = useState(str);
-  const [value, setValue] = useState(30); // Initial value
   const [userData, setUserData] = useState([]);
   const url = "https://mcqbackend.vercel.app/mcq/";
   const [loading, setLoading] = useState(true);
@@ -30,6 +31,7 @@ function DashBoard() {
           },
         });
         setUserData(response?.data);
+        console.log(response?.data);
         setLoading(false);
       } catch (error) {
         console.log("Error:", error);
@@ -109,37 +111,19 @@ function DashBoard() {
                               <div className="language_percentage">
                                 {item["completedPercentage"]}%
                               </div>
-                              <Button name="View Details" />
+                              <div
+                                onClick={() => {
+                                  navigate(
+                                    `/dashboardPageResult/${item["languageId"]}`
+                                  );
+                                }}
+                              >
+                                <Button name="View Details" />
+                              </div>
                             </div>
                           </div>
                         );
                       })}
-                    {/* <div className="body_each_language">
-                      <div className="language_title">Java</div>
-                      <div className="language_body">
-                        <div className="language_range">
-                          <div
-                            className="range_child"
-                            style={{ width: `30%` }}
-                          ></div>
-                        </div>
-                        <div className="language_percentage">30%</div>
-                        <Button name="View Details" />
-                      </div>
-                    </div>
-                    <div className="body_each_language">
-                      <div className="language_title">Java</div>
-                      <div className="language_body">
-                        <div className="language_range">
-                          <div
-                            className="range_child"
-                            style={{ width: `50%` }}
-                          ></div>
-                        </div>
-                        <div className="language_percentage">30%</div>
-                        <Button name="View Details" />
-                      </div>
-                    </div> */}
                   </div>
                 </div>
               </div>
