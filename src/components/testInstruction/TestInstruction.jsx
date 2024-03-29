@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import testInstruction from "./testInstruction.css";
 import testInstructionImage from "./image/testInstruction.svg";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Login from "../login/Login";
 import { Navbar } from "../navbar/Navbar.jsx";
 import axios from "axios";
@@ -11,6 +11,7 @@ export function TestInstruction() {
   // getting value from useParams
   let { languageId, topicId, topicName } = useParams();
 
+  const navigate = useNavigate();
   const [topicIdData, settopicId] = useState("");
   const [languageIdData, setLanguageIdData] = useState("");
   const [topicNameData, settopicName] = useState("");
@@ -43,11 +44,16 @@ export function TestInstruction() {
             },
           }
         );
-        setResponseData(response?.data?.data["questions"]);
-        setQuestionsOnly(response?.data?.data["questions_values"]);
+        if (response?.data?.data["questions"].length > 0) {
+          setResponseData(response?.data?.data["questions"]);
 
-        setLevel(() => response?.data?.data["questions"][0]["level"]);
-        setLoading(false);
+          setQuestionsOnly(response?.data?.data["questions_values"]);
+
+          setLevel(() => response?.data?.data["questions"][0]["level"]);
+          setLoading(false);
+        } else {
+          navigate("/home");
+        }
       } catch (error) {
         console.log("Error:", error);
         setLoading(false);

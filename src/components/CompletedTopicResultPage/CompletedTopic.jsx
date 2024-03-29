@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Login from "../login/Login";
@@ -6,10 +6,16 @@ import { Navbar } from "../navbar/Navbar";
 import Spinner from "../Spinner/Spinner";
 import "./completedTopicStyle.css";
 import Button from "../questionPage/Button";
+import { useNavigate } from "react-router-dom";
+import Context from "../Context";
+import { IoArrowBack } from "react-icons/io5";
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function CompletedTopic() {
-  let { languageId } = useParams();
+  let { languageId, languageName } = useParams();
+  const navigate = useNavigate();
   const [userData, setUserData] = useState();
-
+  const { finalResult, setFinalResult } = useContext(Context);
   const url = "https://mcqbackend.vercel.app/mcq/";
   const [loading, setLoading] = useState(true);
 
@@ -26,7 +32,6 @@ function CompletedTopic() {
           }
         );
         setUserData(response?.data);
-        // console.log(response?.data);
 
         setLoading(false);
       } catch (error) {
@@ -38,21 +43,50 @@ function CompletedTopic() {
     fetchData(); // Call the async function immediately
   }, [languageId]);
 
+  const getAnswer = async (resultId) => {
+    try {
+      setLoading(true);
+      const response = await axios.get(
+        // "http://127.0.0.1:8000/mcq/showResult/",
+        `${url}answerValueInTopicPage/${resultId}/`,
+        {
+          headers: {
+            Authorization: `Token ${localStorage.getItem("token")}`,
+            // You can include other headers as needed
+          },
+        }
+      );
+      setFinalResult(response?.data);
+
+      navigate("/result");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
-      {localStorage.getItem("token") && userData ? (
+      {localStorage.getItem("token") ? (
         <>
+          <Navbar />
           {loading ? (
             <Spinner />
           ) : (
             <section>
-              <Navbar />
               <div className="completedTopic_container">
                 <div className="container_child1">
-                  <div className="child1_title">Java</div>
+                  <div className="child1_title">{languageName}</div>
                   <div className="child1_range">
                     <div className="range_scale">
-                      <div className="range_scale_child"></div>
+                      <div
+                        className="range_scale_child"
+                        style={{
+                          width: `${Math.floor(
+                            (userData["completedTopicCount"] /
+                              userData["Totaltopic"]) *
+                              100
+                          )}%`,
+                        }}
+                      ></div>
                     </div>
                     <div className="title_content">
                       <div>
@@ -77,15 +111,35 @@ function CompletedTopic() {
                       return (
                         <div className="each_content" key={index}>
                           <p>{item["topicName"]}</p>
-                          <div>
+
+                          <div
+                            onClick={() => {
+                              getAnswer(item["resultId"]);
+                            }}
+                          >
                             <Button name="View Result" />
                           </div>
                         </div>
                       );
                     })}
+                    <ToastContainer
+                      position="top-center"
+                      autoClose={5000}
+                      hideProgressBar
+                      newestOnTop={false}
+                      closeOnClick
+                      rtl={false}
+                      pauseOnFocusLoss={false}
+                      draggable
+                      pauseOnHover
+                      theme="dark"
+                      transition={Bounce} // Corrected syntax
+                    />
                   </div>
                 </div>
-                <div cl></div>
+                <div className="backButton" onClick={navigate("/dashboard")}>
+                  <IoArrowBack />
+                </div>
               </div>
             </section>
           )}

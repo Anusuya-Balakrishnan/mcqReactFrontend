@@ -106,8 +106,9 @@ export function QuestionPage() {
   };
 
   useEffect(() => {
-    let lastId = id_list.length - 1;
-    if (resultList[id_list[lastId]]) {
+    let lastId = id_list.length;
+
+    if (resultList[lastId]) {
       setAnsweredQuestions(resultList);
       setResultObject((resultObject) => ({
         resultList: resultList,
@@ -117,9 +118,10 @@ export function QuestionPage() {
       }));
     }
   }, [resultList]);
+
   function changeQuestionNumber() {
     // Move to the next question
-    console.log("Hello");
+
     if (count < id_list.length - 1 && isSelected === 0) {
       toast.info("Please select any one option");
     } else if (count < id_list.length - 1) {
@@ -128,8 +130,8 @@ export function QuestionPage() {
       setCurrentAnswer(null);
     } else {
       // Add the result value for the current question
-      console.log(count);
-      SetCompleted(true);
+
+      // SetCompleted(true);
 
       setResultObject((resultObject) => ({
         resultList: resultList,
@@ -137,6 +139,7 @@ export function QuestionPage() {
         languageId: languageIdData,
         level: level,
       }));
+      SetCompleted(true);
     }
   }
 
@@ -182,8 +185,8 @@ export function QuestionPage() {
         languageId: languageIdData,
         level: level,
       }));
+      SetCompleted(true);
     }
-    SetCompleted(true);
   }, [isUserActive]);
   const postResultData = async () => {
     setLoading(true);
@@ -224,10 +227,9 @@ export function QuestionPage() {
       resultObject.level &&
       iscompleted
     ) {
-      console.log("iscompleted", iscompleted);
       postResultData();
     }
-  }, [iscompleted, resultObject]); // The effect will run whenever resultObject changes
+  }, [resultObject, iscompleted]); // The effect will run whenever resultObject changes
 
   return (
     <>
@@ -291,8 +293,8 @@ export function QuestionPage() {
                                 }}
                               >
                                 <div key={index}>
-                                  <span style={{}}>
-                                    {index == 0 && "A"} {index == 1 && "B"}{" "}
+                                  <span>
+                                    {index == 0 && "A"} {index == 1 && "B"}
                                     {index == 2 && "C"} {index == 3 && "D"}
                                   </span>
                                   {item}

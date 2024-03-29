@@ -6,9 +6,10 @@ import resultPage from "./resultPage.css";
 import Login from "../login/Login";
 import axios from "axios";
 import { IoArrowBack } from "react-icons/io5";
-
+import Button from "../questionPage/Button.jsx";
 import { Navbar } from "../navbar/Navbar";
 import { ClipLoader } from "react-spinners";
+import Spinner from "../Spinner/Spinner.jsx";
 
 export function ResultPage() {
   const url = "https://mcqbackend.vercel.app/mcq/";
@@ -29,6 +30,7 @@ export function ResultPage() {
     setFinalResult,
   } = useContext(Context);
   const [resultValue, setResultValue] = useState();
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -131,6 +133,7 @@ export function ResultPage() {
 
   const getResultValue = async () => {
     try {
+      setLoading(true);
       const response = await axios.post(
         // "http://127.0.0.1:8000/mcq/showResult/",
         `${url}showResult/`,
@@ -145,7 +148,7 @@ export function ResultPage() {
         }
       );
       setFinalResult(response?.data?.data);
-
+      setLoading(false);
       navigate("/result");
     } catch (error) {
       console.log("Error:", error);
@@ -157,89 +160,102 @@ export function ResultPage() {
         resultContent ? (
           <>
             <Navbar />
-            <section class="resultPage">
-              <div class="result__title">
-                {greetingMessage()}{" "}
-                {!newUserToQuiz && showText && (
-                  <div style={{ color: "red" }}>
-                    You are already completed this quiz.
+            <>
+              {loading ? (
+                <Spinner />
+              ) : (
+                <section class="resultPage">
+                  <div class="result__title">
+                    {greetingMessage()}{" "}
+                    {!newUserToQuiz && showText && (
+                      <div style={{ color: "red" }}>
+                        You are already completed this quiz.
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
 
-              <div class="resultPage__body">
-                <div class="resultPage__body_list">
-                  <p>Test Summary:</p>
-                  <ul>
-                    <li>
-                      Total Number of Questions :
-                      <span>
-                        {resultContent
-                          ? resultContent.correctCount +
-                            resultContent.wrongCount +
-                            resultContent.skippedCount
-                          : ""}
-                      </span>
-                    </li>
-                    <li>
-                      Number of Correct Answer(s) :
-                      <span>
-                        {resultContent ? resultContent.correctCount : ""}
-                      </span>
-                    </li>
-                    <li>
-                      Number of Wrong Answer(s) :
-                      <span>
-                        {resultContent ? resultContent.wrongCount : ""}
-                      </span>
-                    </li>
-                    <li>
-                      Number of Skipped Answer(s) :
-                      <span>
-                        {resultContent ? resultContent.skippedCount : ""}
-                      </span>
-                    </li>
-                  </ul>
-                  <button className="viewResult" onClick={getResultValue}>
-                    View Result
-                  </button>
-                </div>
+                  <div class="resultPage__body">
+                    <div class="resultPage__body_list">
+                      <p>Test Summary:</p>
+                      <ul>
+                        <li>
+                          Total Number of Questions :
+                          <span>
+                            {(resultContent
+                              ? resultContent.correctCount +
+                                resultContent.wrongCount +
+                                resultContent.skippedCount
+                              : "") || 0}
+                          </span>
+                        </li>
+                        <li>
+                          Number of Correct Answer(s) :
+                          <span>
+                            {resultContent ? resultContent.correctCount : ""}
+                          </span>
+                        </li>
+                        <li>
+                          Number of Wrong Answer(s) :
+                          <span>
+                            {resultContent ? resultContent.wrongCount : ""}
+                          </span>
+                        </li>
+                        <li>
+                          Number of Skipped Answer(s) :
+                          <span>
+                            {resultContent ? resultContent.skippedCount : ""}
+                          </span>
+                        </li>
+                      </ul>
+                      <div className="viewResult" onClick={getResultValue}>
+                        <Button name=" View Result" />
+                      </div>
+                    </div>
 
-                <div class="resultPage__body_image">
-                  <div className="chart-container">
-                    <div className="chart">
-                      <svg
-                        className="svg"
-                        width="100%"
-                        height="100%"
-                        viewBox="0 0 42 42"
-                      >
-                        <circle className="circle-bg" cx="21" cy="21" r="20" />
-                        <circle
-                          className="circle"
-                          cx="21"
-                          cy="21"
-                          r="20"
-                          style={{ strokeDasharray: `${dashArrayValue} 100` }}
-                        />
-                        <text
-                          x="50%"
-                          y="50%"
-                          textAnchor="middle"
-                          dy=".3em"
-                          className="percentage-text"
-                        >
-                          {percentage}%
-                        </text>
-                      </svg>
+                    <div class="resultPage__body_image">
+                      <div className="chart-container">
+                        <div className="chart">
+                          <svg
+                            className="svg"
+                            width="100%"
+                            height="100%"
+                            viewBox="0 0 42 42"
+                          >
+                            <circle
+                              className="circle-bg"
+                              cx="21"
+                              cy="21"
+                              r="20"
+                            />
+                            <circle
+                              className="circle"
+                              cx="21"
+                              cy="21"
+                              r="20"
+                              style={{
+                                strokeDasharray: `${dashArrayValue} 100`,
+                              }}
+                            />
+                            <text
+                              x="50%"
+                              y="50%"
+                              textAnchor="middle"
+                              dy=".3em"
+                              className="percentage-text"
+                            >
+                              {percentage || 0}%
+                            </text>
+                          </svg>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="back_button" onClick={backButtonNavigate}>
-                <IoArrowBack />
-              </div>
-            </section>
+                  <div class="back_button" onClick={backButtonNavigate}>
+                    <IoArrowBack />
+                  </div>
+                </section>
+              )}
+            </>
           </>
         ) : (
           <ClipLoader color="#36D7B7" />

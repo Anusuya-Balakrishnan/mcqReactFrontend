@@ -43,14 +43,29 @@
                     background-color: red;
                     min-width: 400px;
                     width: auto;
-                    padding: 20px;
+                    padding: 10px 20px;
                     margin: 20px;
                     color:$newBg_color;
                     border: 1px solid $newBg_color;
-                    border-radius: 5px;
+                    border-radius: 100px;
                     cursor: pointer;
                     div{
                         text-align: left;
+                        display: flex;
+                        justify-content:flex-start;
+                        align-items: center;
+                        span{
+                            // background-color: red;
+                            border: 1px solid $newBg_color;
+                            display:flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 30px;
+                            height: 30px;
+                            border-radius: 50%;
+                            text-align: center;
+                            margin-right: 10px;
+                        }
                     }
                     &:hover{
                         background-color: $form-text-color;
@@ -74,13 +89,16 @@
     padding: 10px 40px;
     border: 0;
     background-color: $button-color;
+    // background-color: 
     border-radius: 5px;
     font-size: 18px;
     color: white;
+    cursor: pointer;
+    transition: 0.5s;
     &:hover{
-        background-color: $newBtn;
-        cursor: pointer;
+        box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
     }
+ 
 }
 @media(max-width:700px){
     .question-page{

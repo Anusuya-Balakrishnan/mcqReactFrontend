@@ -39,7 +39,8 @@ export function Navbar() {
         console.log("Logout response:", response?.data);
         localStorage.removeItem("token");
         localStorage.removeItem("username");
-        console.log("Deleted successfully:", response?.data?.Message);
+        localStorage.removeItem("language");
+
         // Refresh the window
         window.location.reload();
       }

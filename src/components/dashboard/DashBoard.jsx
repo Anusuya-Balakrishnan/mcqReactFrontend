@@ -114,7 +114,7 @@ function DashBoard() {
                               <div
                                 onClick={() => {
                                   navigate(
-                                    `/dashboardPageResult/${item["languageId"]}`
+                                    `/dashboardPageResult/${item["languageId"]}/${item["languageName"]}`
                                   );
                                 }}
                               >

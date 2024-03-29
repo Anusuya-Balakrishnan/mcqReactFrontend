@@ -4,6 +4,8 @@
     box-sizing: border-box;
     width: 100%;
     padding: 50px;
+    height: 89vh;
+    position: relative;
     .questionName{
         display: flex;
         justify-content: space-evenly;
@@ -16,8 +18,12 @@
                 margin-right:8px;
             }
         }
-        p{
-            font-size: 20px;
+        .mark_container{
+            // span{
+            //     color:$button-color;
+            //     font-size: 18px;
+            // }
+            font-size: 18px;
         }
     }
     .questionBody{
@@ -50,19 +56,37 @@
                      align-items: center;
             
                     .option{
-                        span{
-                            float: left;
+                        min-width: 130px;
+                        // float: left;
                             margin-right: 5px ;
-                            border: 2px solid white;
-                            width: 40px;
-                            height: 40px;
-                            border-radius: 50%;
-                            display: flex;
+                            text-align: center;
+                            display:flex;
                             justify-content: center;
-                            align-items: center;
-                        }
-                    //   background-color: red; 
-                    padding:10px;
+                                align-items: center;
+                            span{
+                                // background-color: red;
+                                border: 1px solid white;
+                                display:flex;
+                                justify-content: center;
+                                align-items: center;
+                                width: 30px;
+                                height: 30px;
+                                border-radius: 50%;
+                                text-align: center;
+                                margin-right: 10px;
+                            }
+
+                            // border: 2px solid white;
+                            // width: 40px;
+                            // height: 40px;
+                            // border-radius: 50%;
+                            // display: flex;
+                            // justify-content: center;
+                            
+                        // background-color: 
+                    
+                      
+                    padding:10px 20px;
                 }
                 }
                 
@@ -85,6 +109,25 @@
             display: flex;
         }
     }
+    .backButton{
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: $button-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        color: white;
+        cursor: pointer;
+    transition: 0.5s;
+    &:hover{
+        box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
+    }
+    }
 }
 
 @media (max-width:1040px){
@@ -96,19 +139,24 @@
     }
 }
 
-@media (max-width:600px){
+@media (max-width:620px){
     .questionContainer{
         padding:10px;
         .questionName{
-            
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column-reverse;
             .questionNameBlock{
-                font-size: 120%;
+                font-size: 100%;
                 span{
                     margin-right:8px;
                 }
             }
-            p{
-                font-size:  120%;
+            .mark_container{
+                font-size:  100%;
+                margin-bottom: 10px;
+                font-weight: 600;
+               
             }
         }
         .questionBody{
@@ -127,9 +175,16 @@
                    align-items: center;
                     height: auto;
                    .option{
+                    font-size: 90%;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
                     span{
                         float: left;
-                        margin-right: 5px ;
+                        // width: 10px;
+                        // height: 10px;
+
+                        
+                        margin-right: 5px;
                     }
                     padding: 10px;
                    }
@@ -145,5 +200,10 @@
                 
             }
         }
+    .backButton{
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
     }
 }

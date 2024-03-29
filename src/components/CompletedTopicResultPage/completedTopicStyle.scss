@@ -29,8 +29,9 @@
                 border-radius: 20px;
                 background-color: white;
                 .range_scale_child{
-                    width: 90%;
+                    width:auto;
                     height: 100%;
+                    position: absolute;
                     // background-color: red;
                     border-radius: 20px;
                     background-color: $newBtn;
@@ -55,6 +56,7 @@
         background-color: rgba(224, 224, 224, 0.491);
         width: 850px;
         border-radius: 10px;
+        padding: 10px 0 ;
         .child2_title{
             font-size: 28px;
             padding: 10px;
@@ -70,12 +72,31 @@
     
         }
     }
-}
-
-@media (max-width:850px){
-    .completedTopic_container{
-        .container_child1{
-            
-        }
+    .backButton{
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: $button-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        color: white;
+        cursor: pointer;
+    transition: 0.5s;
+    &:hover{
+        box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
+    }
     }
 }
+
+// @media (max-width:850px){
+//     .completedTopic_container{
+//         .container_child1{
+            
+//         }
+//     }
+// }

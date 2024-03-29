@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Spinner from "../Spinner/Spinner";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 export function Home() {
   // const array = ["Programming", "Testing"];
   const [data, setData] = useState([]);
@@ -72,6 +74,7 @@ export function Home() {
                   quizzes that cater to all interests.
                 </p>
               </div>
+
               <div className="MCQ-lists">
                 {mcqList.map((item, index) => (
                   <div className="MCQ-lists_subParent" key={index}>
@@ -89,6 +92,7 @@ export function Home() {
                       {item.mcqName[0].toUpperCase() + item.mcqName.slice(1)}{" "}
                       Quizzes
                     </div>
+
                     <ToastContainer
                       position="top-center"
                       autoClose={5000}

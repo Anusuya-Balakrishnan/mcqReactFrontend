@@ -72,7 +72,7 @@ function App() {
             <Route path="/result" element={<ShowResult />} />
             <Route path="/dashboard" element={<DashBoard />} />
             <Route
-              path="/dashboardPageResult/:languageId"
+              path="/dashboardPageResult/:languageId/:languageName/"
               element={<CompletedTopic />}
             />
           </Routes>

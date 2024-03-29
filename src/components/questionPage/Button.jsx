@@ -12,7 +12,10 @@ function Button(props) {
   // };
   // const SelectedIcon = iconMap[props.iconName];
   return (
-    <div className="question-page-content__submit">
+    <div
+      className="question-page-content__submit"
+      style={{ backgroundColor: props.color && `${props.color}` }}
+    >
       <div> {props.name}</div>
       {/* <SelectedIcon /> */}
     </div>
