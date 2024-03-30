@@ -60,6 +60,17 @@ export function QuestionPage() {
       minutes: Math.floor(Object.keys(questions.key || {}).length - 1),
       seconds: 59,
     });
+    try {
+      // console.log(questions.key);
+      const noOfQuestion = Object.keys(questions.key).length;
+      if (noOfQuestion == 0) {
+        navigate(`/topList/1`);
+      }
+    } catch {
+      navigate(`/topList/1`);
+    }
+
+    // console.log(questions.key.length());
   }, [questions.key]);
 
   useEffect(() => {
@@ -67,6 +78,13 @@ export function QuestionPage() {
       setcurrentQuestion(actualQuestions[id_list[count]]);
     }
   }, [id_list, count]);
+
+  // useEffect(() => {
+  //   console.log(actualQuestions.length);
+  //   if (actualQuestions.length == 0) {
+  //     navigate(`/topList/1`);
+  //   }
+  // }, [actualQuestions]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -230,6 +248,25 @@ export function QuestionPage() {
       postResultData();
     }
   }, [resultObject, iscompleted]); // The effect will run whenever resultObject changes
+
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = ""; // Required for Chrome
+      // Display alert message
+      const confirmationMessage = "Are you sure you want to leave?";
+      event.returnValue = confirmationMessage;
+      return confirmationMessage;
+    };
+
+    // Add event listener when component mounts
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    // Remove event listener when component unmounts
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
 
   return (
     <>

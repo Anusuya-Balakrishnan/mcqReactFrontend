@@ -9,6 +9,8 @@ import axios from "axios";
 import Login from "../login/Login";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../Spinner/Spinner";
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export function TopList() {
   const [data, setData] = useState([]);
   const [languageList, setlanguageList] = useState([]);
@@ -28,7 +30,12 @@ export function TopList() {
           },
         });
 
-        setData(response?.data?.languages);
+        if (response) {
+          setData(response?.data?.languages);
+        } else {
+          toast.info("data unavaiable");
+        }
+
         setLoading(false);
       } catch (error) {
         console.log("Error:", error);
@@ -94,6 +101,19 @@ export function TopList() {
                   </div>
                 ))}
               </div>
+              <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover
+                theme="dark"
+                transition={Bounce} // Corrected syntax
+              />
             </section>
           )}
         </section>

@@ -10,6 +10,9 @@ import "react-toastify/dist/ReactToastify.css";
 import Spinner from "../Spinner/Spinner";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import image from "./images/5.svg";
+import Button from "../questionPage/Button";
+// import image from "./images/2.svg";
 export function Home() {
   // const array = ["Programming", "Testing"];
   const [data, setData] = useState([]);
@@ -61,52 +64,59 @@ export function Home() {
           {loading ? (
             <Spinner />
           ) : (
-            <div className="MCQListPage__body">
-              <div className="MCQListPage__title">
-                <h1 className="title">Welcome to Ocean Academy!</h1>
-                <p className="subtitle1">
-                  Navigate the World of Knowledge with Our Engaging Quizzes
-                </p>
-                <p className="subtitle2">Explore Quizzes</p>
-                <p className="content">
-                  Dive into a world of curiosity and test your knowledge across
-                  various subjects. Select a quiz from our range of captivating
-                  quizzes that cater to all interests.
-                </p>
-              </div>
+            <div className="MCQHomePage_Container">
+              <div className="MCQListPage__body">
+                <div className="MCQListPage__title">
+                  <h1 className="title">Welcome to Ocean Academy!</h1>
+                  <p className="subtitle1">
+                    Navigate the World of Knowledge with Our Engaging Quizzes
+                  </p>
+                  <img src={image} />
+                  <p className="subtitle2">Explore Quizzes</p>
+                  <p className="content">
+                    Dive into a world of curiosity and test your knowledge
+                    across various subjects. Select a quiz from our range of
+                    captivating quizzes that cater to all interests.
+                  </p>
+                </div>
 
-              <div className="MCQ-lists">
-                {mcqList.map((item, index) => (
-                  <div className="MCQ-lists_subParent" key={index}>
-                    <div
-                      className="MCQ-list__Each-test"
-                      key={index}
-                      onClick={() => {
-                        if (item.mcqName.toLowerCase() === "programming") {
-                          userNavigate(item.id);
-                        } else {
-                          toast.info("Not opened up");
-                        }
-                      }}
-                    >
-                      {item.mcqName[0].toUpperCase() + item.mcqName.slice(1)}{" "}
-                      Quizzes
-                    </div>
+                <div className="MCQ-lists">
+                  {mcqList.map((item, index) => (
+                    <div className="MCQ-lists_subParent" key={index}>
+                      <div
+                        className="MCQ-list__Each-test"
+                        key={index}
+                        onClick={() => {
+                          if (item.mcqName.toLowerCase() === "programming") {
+                            userNavigate(item.id);
+                          } else {
+                            toast.info("Not opened up");
+                          }
+                        }}
+                      >
+                        <Button
+                          name={`${
+                            item.mcqName[0].toUpperCase() +
+                            item.mcqName.slice(1)
+                          }
+                          Quizzes`}
+                        />
+                      </div>
 
-                    <ToastContainer
-                      position="top-center"
-                      autoClose={5000}
-                      hideProgressBar
-                      newestOnTop={false}
-                      closeOnClick
-                      rtl={false}
-                      pauseOnFocusLoss={false}
-                      draggable
-                      pauseOnHover
-                      theme="dark"
-                      transition={Bounce} // Corrected syntax
-                    />
-                    {/* <p
+                      <ToastContainer
+                        position="top-center"
+                        autoClose={5000}
+                        hideProgressBar
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss={false}
+                        draggable
+                        pauseOnHover
+                        theme="dark"
+                        transition={Bounce} // Corrected syntax
+                      />
+                      {/* <p
                     style={{
                       display:
                         item.mcqName === "programming" ? "none" : "block",
@@ -115,9 +125,11 @@ export function Home() {
                   >
                     yet to unlock
                   </p> */}
-                  </div>
-                ))}
+                    </div>
+                  ))}
+                </div>
               </div>
+              <img src={image} className="mcqHomeImage" />
             </div>
           )}
         </div>

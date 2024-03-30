@@ -31,7 +31,7 @@ function DashBoard() {
           },
         });
         setUserData(response?.data);
-        console.log(response?.data);
+
         setLoading(false);
       } catch (error) {
         console.log("Error:", error);
@@ -114,7 +114,7 @@ function DashBoard() {
                               <div
                                 onClick={() => {
                                   navigate(
-                                    `/dashboardPageResult/${item["languageId"]}/${item["languageName"]}`
+                                    `/dashboardPageResult/${item["languageId"]}/${item["languageName"]}/`
                                   );
                                 }}
                               >

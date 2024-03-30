@@ -1,198 +1,276 @@
 @use "../variables" as *;
-.MCQListPage__body{
-    // @include flexContent;
-    // flex-direction: column;
-    width: auto;
-    height: 100vh;
+
+.MCQHomePage_Container{
+    display: flex;
+    justify-content: center;
+        // align-items: center;
+    width: 100%;
+    height: 89.5vh;
     background-color: $newPlainBg;
-    padding-top: 20px;
-    padding-left: 280px;
-    
-    .MCQListPage__title{
-        padding-top: 50px;
-        
-        text-align: left;
-        // font-size: 30px;
-        color: black;
-        .title{
-            margin-top: 20px;
-            font-size: 48px;
-            // margin: 20px 0;
-        }
-        .subtitle1{
-            margin-top: 20px;
-            color: black;;
-            font-weight: 500;
-            font-size: 22px;
-
-
-        }
-        .subtitle2{
-            margin-top: 50px;
-            // font-size: 20px;
-            font-weight: 600;
-            font-size: 28px;
-            color:$newBg_color;
-        }
-        .content{
-            margin: 30px 0 40px;
-            width: 700px;
-            font-size: 18px;
-            line-height: 2;
-            color:$newBg_color;
-            text-align: left;
-        }
-    }
-    .MCQ-lists{
-        width: auto;
-        // width: 1200px;
-        // background-color: aqua;
-        height: auto;
-        display: flex;
-        justify-content:flex-start;
-        padding-top: 20px;
-        align-items: flex-start;
+    .MCQListPage__body{
+        // @include flexContent;
         // flex-direction: column;
-        flex-wrap: wrap;
-        .MCQ-lists_subParent{
-
-            // background-color: aquamarine;
-            margin: 20px;
-            width: auto;
-            height: auto;
-            @include flexContent;
+        // width: 60%;
+        // height: 100vh;
+        
+        padding-top: 60px;
+        // padding-left: 280px;
+        padding-left: 180px;
+        
+        .MCQListPage__title{
+            padding-top: 50px;
+            
+            text-align: left;
+            // font-size: 30px;
+            color: black;
+            display: flex;
+            justify-content:center;
             align-items: flex-start;
             flex-direction: column;
-            .MCQ-list__Each-test{
-                background-color: $newBtn;
-                // background-image:$background-color;
-                padding: 15px;
-                // margin: 30px;
-                margin-right:40px;
-                
-                width: 300px;
-                border-radius: 10px;
-                font-size: 20px;
+            img{
+                margin-top: 20px;
+                width: 60%;
+                display: none;
+            }
+            .title{
+                margin-top: 20px;
+                font-size: 48px;
+                // margin: 20px 0;
+            }
+            .subtitle1{
+                margin-top: 20px;
+                color: black;;
                 font-weight: 500;
-                cursor: pointer;
-                transition: 0.5s;
-               
-                    text-decoration: none;
-                    color: white;
+                font-size: 22px;
+    
+    
+            }
+            .subtitle2{
+                margin-top: 50px;
+                // font-size: 20px;
+                font-weight: 600;
+                font-size: 28px;
+                // text-align: left;
+                // background-color: aqua;
+                color:$newBg_color;
+            }
+            .content{
+                margin: 30px 0 40px;
+                width: 700px;
+                font-size: 18px;
+                line-height: 2;
+                color:$newBg_color;
+                text-align: left;
+            }
+        }
+        .MCQ-lists{
+            width: auto;
+            // width: 1200px;
+            // background-color: aqua;
+            height: auto;
+            display: flex;
+            justify-content:flex-start;
+            padding-top: 20px;
+            align-items: flex-start;
+            // flex-direction: column;
+            flex-wrap: wrap;
+            // .MCQ-lists_subParent{
+    
+            //     // background-color: aquamarine;
+            //     margin: 20px;
+            //     width: auto;
+            //     height: auto;
+            //     @include flexContent;
+            //     align-items: flex-start;
+            //     flex-direction: column;
+            //     .MCQ-list__Each-test{
+            //         background-color: $newBtn;
+            //         // background-image:$background-color;
+            //         padding: 15px;
+            //         // margin: 30px;
+            //         margin-right:40px;
+                    
+            //         width: 300px;
+            //         border-radius: 10px;
+            //         font-size: 20px;
+            //         font-weight: 500;
+            //         cursor: pointer;
+            //         transition: 0.5s;
                    
+            //             text-decoration: none;
+            //             color: white;
+                       
+                    
+            //         &:hover{
+            //             box-shadow: white;
+            //             transform: scale(1.05);
+            //         }
+                    
+            //     }
+            //     p{
+            //         margin: 10px;
+            //     }
                 
-                &:hover{
-                    box-shadow: white;
-                    transform: scale(1.05);
-                }
-                
-            }
-            p{
-                margin: 10px;
-            }
+            // }
             
         }
-        
+    }
+    .mcqHomeImage{
+        width: 40%;
+
+    }
+}
+@media (max-width:1500px){
+    .MCQHomePage_Container{
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .MCQListPage__body{
+          padding: 0;
+          .MCQListPage__title{
+            align-items:center;
+            img{
+                display: block;
+            }
+          }
+          .MCQ-lists{
+            display: flex;
+            justify-content: center;
+        align-items: center;
+        padding-bottom: 20px;
+          }
+        }
+        .mcqHomeImage{
+            display: none;
+            
+        }
     }
 }
 
 @media(max-width:1150px){
-    .MCQListPage__body{
-        @include flexContent;
-    flex-direction: column;
-    justify-content: flex-start;
-        padding: 20px;
-        // padding-top: 20px;
-        // padding-left: 280px;
-        .MCQListPage__title{
-            text-align: center;
-      
-        }
-        
-    }
-}
-
-@media(max-width:820px){
-    .MCQListPage__body{
+    .MCQHomePage_Container{
        
-        padding: 20px;
-        
-        .MCQListPage__title{
-           
-            .title{
-              font-size: 180%;
-            }
-            .subtitle1{
-              font-size: 120%;
-            }
-            .subtitle2{
-                font-size: 120%;
-            }
-            .content{
-                font-size: 100%;
-               width: auto; 
-            }
-        }
-        .MCQ-lists{
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            .MCQ-lists_subParent{
-                width: auto;
-                align-items: center;
-            justify-content: center;
-                .MCQ-list__Each-test{
-                    font-size: 90%;
-                   margin: 10px;
-                   width: auto;
-                    
-                    
-                    
+        .MCQListPage__body{
+            width: 100%;
+            // background-color: rebeccapurple;
+            @include flexContent;
+        flex-direction: column;
+        justify-content: flex-start;
+            padding: 20px;
+            // padding-top: 20px;
+            // padding-left: 280px;
+            .MCQListPage__title{
+                text-align: center;
+                
+                .subtitle2{
+                    margin: 20px auto;
                 }
-                p{
-                    margin: 0px;
-                    font-size: 80%;
+                .content{
+                    margin: 20px auto;
                 }
-            }
-           
-        }
-    }
-}
-
-@media(max-width:450px){
-    .MCQListPage__body{
-       
-        padding: 20px;
-        
-        .MCQListPage__title{
-           
-            .title{
-              font-size: 180%;
-            }
-            .subtitle1{
-              font-size: 120%;
-            }
-            .subtitle2{
-                font-size: 120%;
-            }
-            .content{
-                font-size: 100%;
-               width: auto; 
-            }
-        }
-        .MCQ-lists{
-            flex-direction: column;
-            .MCQ-lists_subParent{
-                .MCQ-list__Each-test{
-                    font-size: 90%;
-                   margin: 10px;
-                   width: auto;
-                    
-                    
-                    
-                }
+          
             }
             
         }
+        // .mcqHomeImage{
+        //     display: none;
+        // }
     }
+    
+}
+
+@media(max-width:820px){
+    .MCQHomePage_Container{
+        .MCQListPage__body{
+       
+            padding: 20px;
+            
+            .MCQListPage__title{
+               padding: 0;
+                .title{
+                  font-size: 180%;
+                }
+                .subtitle1{
+                  font-size: 120%;
+                }
+                .subtitle2{
+                    font-size: 120%;
+                }
+                .content{
+                    font-size: 100%;
+                   width: auto; 
+                }
+            }
+            .MCQ-lists{
+
+                flex-direction: column;
+                
+                // align-items: center;
+                // justify-content: center;
+                // .MCQ-lists_subParent{
+                //     width: auto;
+                //     align-items: center;
+                // justify-content: center;
+                //     .MCQ-list__Each-test{
+                //         font-size: 90%;
+                //        margin: 10px;
+                //        width: auto;
+                        
+                        
+                        
+                //     }
+                //     p{
+                //         margin: 0px;
+                //         font-size: 80%;
+                //     }
+                // }
+               
+            }
+        }
+    }
+   
+}
+
+@media(max-width:450px){
+    .MCQHomePage_Container{
+        .MCQListPage__body{
+       
+            padding: 20px;
+            
+            .MCQListPage__title{
+               
+                .title{
+                  font-size: 180%;
+                }
+                .subtitle1{
+                  font-size: 120%;
+                }
+                .subtitle2{
+                    font-size: 120%;
+                }
+                .content{
+                    font-size: 100%;
+                   width: auto; 
+                }
+            }
+            // .MCQ-lists{
+            //     flex-direction: column;
+            //     .MCQ-lists_subParent{
+            //         .MCQ-list__Each-test{
+            //             font-size: 90%;
+            //            margin: 10px;
+            //            width: auto;
+                        
+                        
+                        
+            //         }
+            //     }
+                
+            // }
+        }
+    }
+    
 }

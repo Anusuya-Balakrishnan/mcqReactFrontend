@@ -30,6 +30,9 @@
         margin-top: 50px;
         margin-left: 250px;
         width: auto;
+        .code{
+            width: 50%;
+        }
         .options{
             margin: 10px 0;
             // width: auto;
@@ -160,7 +163,10 @@
             }
         }
         .questionBody{
-            
+            .code{
+                margin: 10px;
+                width: auto;
+            }
             .options{
          
                 .optionBlock{

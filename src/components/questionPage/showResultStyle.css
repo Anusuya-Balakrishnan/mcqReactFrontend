@@ -35,6 +35,9 @@
   margin-left: 250px;
   width: auto;
 }
+.questionContainer .questionBody .code {
+  width: 50%;
+}
 .questionContainer .questionBody .options {
   margin: 10px 0;
   display: flex;
@@ -137,6 +140,10 @@
     font-size: 100%;
     margin-bottom: 10px;
     font-weight: 600;
+  }
+  .questionContainer .questionBody .code {
+    margin: 10px;
+    width: auto;
   }
   .questionContainer .questionBody .options .optionBlock {
     font-size: 100%;

@@ -32,7 +32,6 @@ function CompletedTopic() {
           }
         );
         setUserData(response?.data);
-
         setLoading(false);
       } catch (error) {
         console.log("Error:", error);
@@ -137,7 +136,12 @@ function CompletedTopic() {
                     />
                   </div>
                 </div>
-                <div className="backButton" onClick={navigate("/dashboard")}>
+                <div
+                  className="backButton"
+                  onClick={() => {
+                    navigate("/dashboard");
+                  }}
+                >
                   <IoArrowBack />
                 </div>
               </div>

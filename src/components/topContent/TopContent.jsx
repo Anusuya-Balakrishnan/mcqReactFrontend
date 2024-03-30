@@ -31,8 +31,14 @@ export function TopContent() {
             // You can include other headers as needed
           },
         });
+        // console.log(response?.data);
+        if (response?.data) {
+          setData(response?.data?.topic);
+        } else {
+          toast.info("topic unavaiable");
+          navigate(`/topList/${id}`);
+        }
 
-        setData(response?.data?.topic);
         setLoading(false);
       } catch (error) {
         console.log("Error:", error);
@@ -46,12 +52,17 @@ export function TopContent() {
   useEffect(() => {
     // console.log("data", data);
     const array = [];
-    for (let eachData of data) {
-      // console.log("eachData", eachData);
-      array.push(eachData);
+    if (data) {
+      for (let eachData of data) {
+        // console.log("eachData", eachData);
+        array.push(eachData);
+      }
+      // console.log("topics", topics);
+      setTopics(array);
+    } else {
+      toast.info("topic unavaiable");
+      navigate(`/topList/${1}`);
     }
-    // console.log("topics", topics);
-    setTopics(array);
   }, [data]);
 
   const userNaivagate = (languageId, topicId, topicName, status) => {
