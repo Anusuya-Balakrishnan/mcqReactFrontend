@@ -94,7 +94,7 @@ function PasswordPage() {
                           type={showPassword ? "text" : "password"}
                           ref={passwordRef}
                           onChange={(e) => {
-                            setPassword(e.target.value.toUpperCase());
+                            setPassword(e.target.value);
                           }}
                           placeholder="Enter Password"
                           name="password"
