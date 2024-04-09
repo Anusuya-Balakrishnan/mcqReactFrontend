@@ -1,13 +1,11 @@
 import React, { useEffect, useContext, useState } from "react";
-// import MyContext, { useMyContext } from "../MyContext";
 import Context from "../Context";
 import Login from "../login/Login";
-import { Navbar } from "../navbar/Navbar";
 import Button from "./Button";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import questionPage from "./questionPage.css";
-import { json, useParams } from "react-router-dom";
+import "./questionPage.css";
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { RiTimerLine } from "react-icons/ri";
@@ -16,25 +14,23 @@ import { NavbarForQuiz } from "../navbar/NavbarForQuiz";
 import Spinner from "../Spinner/Spinner";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { darcula } from "react-syntax-highlighter/dist/esm/styles/prism";
-
+import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
 export function QuestionPage() {
   // data from test instruction page
   const {
     questions,
-    setQuestions,
-    question_id,
     setQuestion_id,
     isUserActive,
     setIsUserActive,
-    resultContent,
     setResultContent,
-    newUserToQuiz,
     setNewUserToQuiz,
-    answeredQuestions,
     setAnsweredQuestions,
   } = useContext(Context);
+
   const navigate = useNavigate();
   let { topicName } = useParams();
+
   const [actualQuestions, setActualQuestions] = useState({});
   const [id_list, setId_list] = useState([]);
   const [count, setCount] = useState(0);
@@ -51,26 +47,22 @@ export function QuestionPage() {
   const [loading, setLoading] = useState(false);
   const [iscompleted, SetCompleted] = useState(false);
 
-  const url = "https://mcqbackend.vercel.app/mcq/";
+  // const url = "https://mcqbackend.vercel.app/mcq/";
+  const url = "http://127.0.0.1:8000/mcq/";
   useEffect(() => {
     setActualQuestions(questions.key || {});
 
     setId_list(Object.keys(questions.key || {}));
     setTimer({
+      // minutes: 0,
+      // seconds: 10,
       minutes: Math.floor(Object.keys(questions.key || {}).length - 1),
       seconds: 59,
     });
-    try {
-      // console.log(questions.key);
-      const noOfQuestion = Object.keys(questions.key).length;
-      if (noOfQuestion == 0) {
-        navigate(`/topList/1`);
-      }
-    } catch {
+    // If no questions are available, redirect to the topic list page
+    if (Object.keys(questions.key || {}).length === 0) {
       navigate(`/topList/1`);
     }
-
-    // console.log(questions.key.length());
   }, [questions.key]);
 
   useEffect(() => {
@@ -78,13 +70,6 @@ export function QuestionPage() {
       setcurrentQuestion(actualQuestions[id_list[count]]);
     }
   }, [id_list, count]);
-
-  // useEffect(() => {
-  //   console.log(actualQuestions.length);
-  //   if (actualQuestions.length == 0) {
-  //     navigate(`/topList/1`);
-  //   }
-  // }, [actualQuestions]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -109,8 +94,10 @@ export function QuestionPage() {
   const handleQuizCompletion = () => {
     // Stop the quiz and navigate to the result page
     // Add any additional logic you need before navigating
+
     for (let eachId of id_list) {
       if (!resultList[eachId]) {
+        console.log("add");
         setResultList((prevResultList) => ({
           ...prevResultList,
           [eachId]: {
@@ -120,13 +107,12 @@ export function QuestionPage() {
         }));
       }
     }
+    // console.log(resultList);
     SetCompleted(true);
   };
 
   useEffect(() => {
-    let lastId = id_list.length;
-
-    if (resultList[lastId]) {
+    if (Object.keys(resultList).length == Object.keys(questions.key).length) {
       setAnsweredQuestions(resultList);
       setResultObject((resultObject) => ({
         resultList: resultList,
@@ -293,21 +279,23 @@ export function QuestionPage() {
                 </div>
                 <div className="question-page__body">
                   <div className="question-page-content">
-                    <form id="questionForm">
+                    <form>
                       <span className="question-page-content__questions">
                         {/* {highlightCode(currentQuestion["question"] || "")} */}
                         {currentQuestion["question"] || ""}
                       </span>
-                      {currentQuestion["code"] && (
-                        <SyntaxHighlighter
-                          language={localStorage
-                            .getItem("language")
-                            .toLowerCase()}
-                          style={darcula}
-                        >
-                          {currentQuestion["code"] || ""}
-                        </SyntaxHighlighter>
-                      )}
+                      <span className="question_code">
+                        {currentQuestion["code"] && (
+                          <SyntaxHighlighter
+                            language={localStorage
+                              .getItem("language")
+                              .toLowerCase()}
+                            style={darcula}
+                          >
+                            {currentQuestion["code"] || ""}
+                          </SyntaxHighlighter>
+                        )}
+                      </span>
 
                       <div className="question-page-content__optionParent">
                         {currentQuestion["option"]
@@ -329,11 +317,17 @@ export function QuestionPage() {
                                       : "#072c50",
                                 }}
                               >
-                                <div key={index}>
-                                  <span>
-                                    {index == 0 && "A"} {index == 1 && "B"}
+                                <Stack direction="row" spacing={2}>
+                                  <Avatar
+                                    style={{ backgroundColor: "#072c50" }}
+                                    // variant="square"
+                                  >
+                                    {index == 0 && "A"}
+                                    {index == 1 && "B"}
                                     {index == 2 && "C"} {index == 3 && "D"}
-                                  </span>
+                                  </Avatar>
+                                </Stack>
+                                <div className="optionContent" key={index}>
                                   {item}
                                 </div>
                               </div>

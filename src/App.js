@@ -17,7 +17,7 @@ import Context from "./components/Context.jsx";
 import LeaderBoardPage from "./components/leaderboard/LeaderBoardPage.jsx";
 import PasswordPage from "./components/password/PasswordPage.jsx";
 import { NavbarForQuiz } from "./components/navbar/NavbarForQuiz.jsx";
-import ShowResult from "./components/questionPage/ShowResult.jsx";
+import ShowResult from "./components/ShowResult/ShowResult.jsx";
 import DashBoard from "./components/dashboard/DashBoard.jsx";
 import CompletedTopic from "./components/CompletedTopicResultPage/CompletedTopic.jsx";
 

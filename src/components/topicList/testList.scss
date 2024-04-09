@@ -4,7 +4,9 @@
 
 
 .mcqTestList{
-    height: 100vh;
+    
+    min-height: 89.3vh;
+    height: auto;
     padding-left:150px ;
     background-color:$newPlainBg;
     .mcqTestList__Title{
@@ -68,7 +70,7 @@
             .MCQTest__Box-content{
                 p{
                     font-size: 15px;
-                    margin: 20px;
+                    margin: 10px;
                     text-align: left;
                     img{
                         float: left;
@@ -91,10 +93,25 @@
     }
 }
 
+@media(max-width:1445px){
+    .mcqTestList{
+        padding-left: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .mcqTestList__Title{
+            text-align: center;
+        }
+        .MCQTest__Box-parent{
+            justify-content: center;
+        }
+    }
+}
 
 @media (max-width:1050px) {
     .mcqTestList{
-        height: auto;
+        // height: auto;
         padding-left:0 ;
         .mcqTestList__Title{
             width: 100%;
@@ -157,7 +174,7 @@
                 .MCQTest__Box-content{
                     p{
                         font-size: 15px;
-                        margin: 20px;
+                        // margin: 20px;
                         text-align: left;
                         img{
                             float: left;
@@ -222,6 +239,7 @@
                     }
                     p{
                       font-size: 110%;
+                      padding: 10px;
 
                        
                     }

@@ -9,12 +9,13 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Context from "../Context";
 import { Navbar } from "../navbar/Navbar";
-import Button from "./Button";
+import Button from "../questionPage/Button";
 import { Home } from "../home/Home";
 import { GrLinkNext } from "react-icons/gr";
 import { IoArrowBack } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-
+import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
 function ShowResult() {
   const { finalResult, setFinalResult } = useContext(Context);
   const [questionNo, setQuestionNo] = useState(0);
@@ -94,8 +95,33 @@ function ShowResult() {
                               "#FF6868"),
                         }}
                       >
+                        <Stack direction="row" spacing={2}>
+                          <Avatar
+                            style={{
+                              color:
+                                (item === finalResult[questionNo]["answer"] ||
+                                  item ===
+                                    finalResult[questionNo][
+                                      "selectedAnswer"
+                                    ]) &&
+                                "white",
+                              backgroundColor:
+                                (item === finalResult[questionNo]["answer"] &&
+                                  "#17CA53") ||
+                                (item ===
+                                  finalResult[questionNo]["selectedAnswer"] &&
+                                  "#FF6868"),
+                            }}
+                            // style={{ backgroundColor: "#072c50" }}
+                            // variant="square"
+                          >
+                            {index == 0 && "A"}
+                            {index == 1 && "B"}
+                            {index == 2 && "C"} {index == 3 && "D"}
+                          </Avatar>
+                        </Stack>
                         <p className="option">
-                          <span>
+                          {/* <span>
                             {index == 0
                               ? "A"
                               : index == 1
@@ -103,10 +129,11 @@ function ShowResult() {
                               : index == 2
                               ? "C"
                               : "D"}
-                          </span>{" "}
+                          </span>{" "} */}
                           {item}
                         </p>
                       </div>
+
                       {!finalResult[questionNo]["isCorrect"]
                         ? (finalResult[questionNo]["selectedAnswer"] ===
                             item && (
@@ -121,6 +148,10 @@ function ShowResult() {
                     </div>
                   );
                 })}
+                <p style={{ color: "red" }}>
+                  {finalResult[questionNo]["selectedAnswer"] == "time out" &&
+                    "not selected any option"}
+                </p>
               </div>
               <div className="questionChangeButton">
                 <div onClick={movePreivousQuestion}>

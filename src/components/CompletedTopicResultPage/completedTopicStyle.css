@@ -59,6 +59,7 @@
   width: 850px;
   border-radius: 10px;
   padding: 10px 0;
+  margin-bottom: 60px;
 }
 .completedTopic_container .container_child2 .child2_title {
   font-size: 28px;
@@ -74,11 +75,11 @@
   align-items: center;
 }
 .completedTopic_container .backButton {
-  position: absolute;
+  position: fixed;
   bottom: 10px;
   left: 10px;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: #2D81F7;
   display: flex;
@@ -94,12 +95,17 @@
 }
 
 @media (max-width: 850px) {
+  .completedTopic_container {
+    padding: 10px;
+    align-items: flex-start;
+    margin: auto;
+  }
   .completedTopic_container .container_child1 {
-    width: 90%;
+    width: 100%;
     font-size: 90%;
   }
   .completedTopic_container .container_child2 {
-    width: 90%;
+    width: 100%;
   }
   .completedTopic_container .container_child2 .child2_title {
     font-size: 130%;
@@ -110,7 +116,6 @@
 }
 @media (max-width: 450px) {
   .completedTopic_container .container_child2 .child2_content .each_content {
-    align-items: flex-start;
-    flex-direction: column;
+    padding: 0 0 0 10px;
   }
 }/*# sourceMappingURL=completedTopicStyle.css.map */

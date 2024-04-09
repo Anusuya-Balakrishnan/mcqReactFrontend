@@ -48,6 +48,7 @@
   color: #072c50;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .test-content__parent .test-content-lists .test-content__listElement .statusIcon {
   font-size: 20px;
@@ -91,5 +92,8 @@
   .test-content__parent .test-content-lists .test-content__listElement {
     width: auto;
     font-size: 90%;
+  }
+  .test-content__parent .test-content-lists .test-content__listElement p {
+    padding: 0 5px;
   }
 }/*# sourceMappingURL=testContent.css.map */

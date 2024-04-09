@@ -7,7 +7,8 @@
 }
 
 .mcqTestList {
-  height: 100vh;
+  min-height: 89.3vh;
+  height: auto;
   padding-left: 150px;
   background-color: rgb(240, 242, 246);
 }
@@ -68,7 +69,7 @@
 }
 .mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-content p {
   font-size: 15px;
-  margin: 20px;
+  margin: 10px;
   text-align: left;
 }
 .mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-content p img {
@@ -82,9 +83,23 @@
   transform: scale(1.05);
 }
 
+@media (max-width: 1445px) {
+  .mcqTestList {
+    padding-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .mcqTestList .mcqTestList__Title {
+    text-align: center;
+  }
+  .mcqTestList .MCQTest__Box-parent {
+    justify-content: center;
+  }
+}
 @media (max-width: 1050px) {
   .mcqTestList {
-    height: auto;
     padding-left: 0;
   }
   .mcqTestList .mcqTestList__Title {
@@ -143,7 +158,6 @@
   }
   .mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-content p {
     font-size: 15px;
-    margin: 20px;
     text-align: left;
   }
   .mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-content p img {
@@ -184,6 +198,7 @@
   }
   .mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-title p {
     font-size: 110%;
+    padding: 10px;
   }
   .mcqTestList .MCQTest__Box-parent .MCQ-list__Each-test div .MCQTest__Box .MCQTest__Box-content p {
     font-size: 80%;

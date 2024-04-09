@@ -67,11 +67,11 @@ export function TopList() {
             <Spinner />
           ) : (
             <section className="mcqTestList">
-              <div class="mcqTestList__Title">
+              <div className="mcqTestList__Title">
                 <h1>Explore Topics</h1>
                 <p>Choose a Language to Dive Deeper:</p>
               </div>
-              <div class="MCQTest__Box-parent">
+              <div className="MCQTest__Box-parent">
                 {languageList.map((item, index) => (
                   <div className="MCQ-list__Each-test">
                     <div
@@ -81,15 +81,15 @@ export function TopList() {
                         contentNavigate(item.id);
                       }}
                     >
-                      <div class="MCQTest__Box">
-                        <div class="MCQTest__Box-title">
-                          <div class="MCQTest__Box-title__image">
+                      <div className="MCQTest__Box">
+                        <div className="MCQTest__Box-title">
+                          <div className="MCQTest__Box-title__image">
                             <img src={pythonLogo} alt="python logo" />
                           </div>
 
                           <p>{item.languageName} MCQs</p>
                         </div>
-                        <div class="MCQTest__Box-content">
+                        <div className="MCQTest__Box-content">
                           <p>Average Score: 4</p>
                           <p>No of Participants : 2502</p>
                           {/* <p>

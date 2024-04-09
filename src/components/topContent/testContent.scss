@@ -50,6 +50,7 @@ height: auto;
     color: $newBg_color;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     .statusIcon{
         font-size: 20px;
     }
@@ -105,6 +106,9 @@ height: auto;
             .test-content__listElement{
                 width: auto;
                 font-size: 90%;
+                p{
+                    padding: 0 5px;
+                }
             }
         }
         
