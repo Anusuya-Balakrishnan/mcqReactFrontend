@@ -12,8 +12,8 @@ function LeaderBoardPage() {
   const [loading, setLoading] = useState(true);
   const token = localStorage.getItem("token");
   const username = localStorage.getItem("username");
-  const url = "https://mcqbackend.vercel.app/mcq/";
-  // const url = "http://127.0.0.1:8000/mcq/";
+  // const url = "https://mcqbackend.vercel.app/mcq/";
+  const url = "http://127.0.0.1:8000/mcq/";
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -26,6 +26,7 @@ function LeaderBoardPage() {
 
         setResultData(response?.data?.data);
         // Set loading to false once data is fetched
+        // console.log("response?.data?.data", response?.data?.data);
 
         setLoading(false);
       } catch (error) {
@@ -82,9 +83,10 @@ function LeaderBoardPage() {
                           }`}
                         >
                           <div>{index + 1}</div>
+
                           <div>
                             {item.username[0].toUpperCase() +
-                              item.username.slice(1)}
+                              item.username.slice(1).toLowerCase()}
                             <img
                               src={winCup}
                               style={{
@@ -93,7 +95,9 @@ function LeaderBoardPage() {
                               alt="medal"
                             />
                           </div>
-                          <div>{item.result}</div>
+                          <div>
+                            {item.result} attended {item.noOfTestAttended}
+                          </div>
                         </div>
                       </React.Fragment>
                     );

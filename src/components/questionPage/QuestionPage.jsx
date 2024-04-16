@@ -47,9 +47,10 @@ export function QuestionPage() {
   const [loading, setLoading] = useState(false);
   const [iscompleted, SetCompleted] = useState(false);
 
-  // const url = "https://mcqbackend.vercel.app/mcq/";
-  const url = "http://127.0.0.1:8000/mcq/";
+  const url = "https://mcqbackend.vercel.app/mcq/";
+  // const url = "http://127.0.0.1:8000/mcq/";
   useEffect(() => {
+    console.log("questions.key", questions.key);
     setActualQuestions(questions.key || {});
 
     setId_list(Object.keys(questions.key || {}));

@@ -46,6 +46,7 @@ export function TestInstruction() {
         );
         if (response?.data?.data["questions"].length > 0) {
           setResponseData(response?.data?.data["questions"]);
+          console.log("response?.data?.data", response?.data?.data);
 
           setQuestionsOnly(response?.data?.data["questions_values"]);
 
