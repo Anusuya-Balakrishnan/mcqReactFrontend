@@ -23,11 +23,12 @@ function ShowResult() {
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [mark, setMark] = useState(0);
   const navigate = useNavigate();
+
   useEffect(() => {
     if (finalResult.length > 0) {
       setQuestionNo(0);
       setTotalQuestions(finalResult.length);
-      // console.log(finalResult[0]["isCorrect"]);
+
       let temp = 0;
       for (let eachResult of finalResult) {
         if (eachResult["isCorrect"]) {

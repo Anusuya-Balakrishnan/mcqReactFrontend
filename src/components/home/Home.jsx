@@ -29,7 +29,7 @@ export function Home() {
             // You can include other headers as needed
           },
         });
-
+        console.log(localStorage.getItem("token"));
         setData(response?.data?.mcqList);
         // Set loading to false once data is fetched
         setLoading(false);

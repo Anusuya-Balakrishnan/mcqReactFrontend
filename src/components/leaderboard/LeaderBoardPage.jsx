@@ -10,23 +10,23 @@ function LeaderBoardPage() {
   const [currentUserData, setCurrentUserData] = useState();
   const [currentUserId, setCurrentUserId] = useState(0);
   const [loading, setLoading] = useState(true);
+  const token = localStorage.getItem("token");
+  const username = localStorage.getItem("username");
   const url = "https://mcqbackend.vercel.app/mcq/";
+  // const url = "http://127.0.0.1:8000/mcq/";
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          url + "leaderBoardApi/",
+        const response = await axios.get(url + "leaderBoardApi/", {
+          headers: {
+            Authorization: `Token ${token}`,
+            // You can include other headers as needed
+          },
+        });
 
-          {
-            headers: {
-              Authorization: `Token ${localStorage.getItem("token")}`,
-              // You can include other headers as needed
-            },
-          }
-        );
-
-        setResultData(response?.data?.message);
+        setResultData(response?.data?.data);
         // Set loading to false once data is fetched
+
         setLoading(false);
       } catch (error) {
         console.log("Error:", error);
@@ -37,18 +37,18 @@ function LeaderBoardPage() {
 
     fetchData(); // Call the async function immediately
   }, []);
-  useEffect(() => {
-    // Assuming "currentUser" is a boolean property in resultData
-    setCurrentUserData(
-      resultData && resultData.filter((item) => item.currentUser)
-    );
-    // Ensure resultData is an array before calling findIndex
-    if (Array.isArray(resultData) && resultData.length > 0) {
-      setCurrentUserId(resultData.findIndex((item) => item.currentUser) + 1);
-    }
+  // useEffect(() => {
+  //   // Assuming "currentUser" is a boolean property in resultData
+  //   setCurrentUserData(
+  //     resultData && resultData.filter((item) => item.currentUser)
+  //   );
+  //   // Ensure resultData is an array before calling findIndex
+  //   if (Array.isArray(resultData) && resultData.length > 0) {
+  //     setCurrentUserId(resultData.findIndex((item) => item.currentUser) + 1);
+  //   }
 
-    // Now currentUserData contains an array with only the current user's data
-  }, [resultData]);
+  //   // Now currentUserData contains an array with only the current user's data
+  // }, [resultData]);
   return (
     <>
       {localStorage.getItem("token") ? (
@@ -71,21 +71,6 @@ function LeaderBoardPage() {
                   <div>User</div>
                   <div>Points</div>
                 </div>
-                {/* {currentUserData
-                  ? currentUserData.map((item, index) => (
-                      <React.Fragment key={index}>
-                        <div className="leaderboard_item2 currentUser">
-                          <div>{currentUserId ? currentUserId : ""}</div>
-                          <div>
-                            {item.username[0].toUpperCase() +
-                              item.username.slice(1)}{" "}
-                            <img src={winCup} alt="medal" />
-                          </div>
-                          <div>{item.result}</div>
-                        </div>
-                      </React.Fragment>
-                    ))
-                  : ""} */}
 
                 {resultData ? (
                   resultData.map((item, index) => {
@@ -93,7 +78,7 @@ function LeaderBoardPage() {
                       <React.Fragment key={index}>
                         <div
                           className={` leaderboard_item2 ${
-                            item.currentUser && "currentUser"
+                            item.username === username && "currentUser"
                           }`}
                         >
                           <div>{index + 1}</div>

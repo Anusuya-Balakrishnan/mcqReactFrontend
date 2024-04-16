@@ -20,8 +20,9 @@ export function Navbar() {
   const [activePage, setActivePage] = useState("");
   const [loading, setLoading] = useState(false);
   const url = "https://mcqbackend.vercel.app/mcq/";
+  const token = localStorage.getItem("token");
   const logoutFunction = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     setLoading(true);
     try {
       const response = await axios.post(
@@ -29,7 +30,7 @@ export function Navbar() {
         {},
         {
           headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`, // Include the authorization token
+            Authorization: `Token ${token}`, // Include the authorization token
             // You can include other headers as needed
           },
         }
@@ -40,14 +41,16 @@ export function Navbar() {
         localStorage.removeItem("token");
         localStorage.removeItem("username");
         localStorage.removeItem("language");
+        navigate("/");
 
         // Refresh the window
-        window.location.reload();
+        // window.location.reload();
       }
     } catch (error) {
       console.error("Error deleting resource:", error);
       // Refresh the window
-      window.location.reload();
+      // window.location.reload();
+      navigate("/");
     }
   };
   useEffect(() => {

@@ -45,6 +45,7 @@ function CompletedTopic() {
   const getAnswer = async (resultId) => {
     try {
       setLoading(true);
+      localStorage.setItem("language", languageName);
       const response = await axios.get(
         // "http://127.0.0.1:8000/mcq/showResult/",
         `${url}answerValueInTopicPage/${resultId}/`,
