@@ -12,8 +12,8 @@ function LeaderBoardPage() {
   const [loading, setLoading] = useState(true);
   const token = localStorage.getItem("token");
   const username = localStorage.getItem("username");
-  // const url = "https://mcqbackend.vercel.app/mcq/";
-  const url = "http://127.0.0.1:8000/mcq/";
+  const url = "https://mcqbackend.vercel.app/mcq/";
+  // const url = "http://127.0.0.1:8000/mcq/";
   useEffect(() => {
     const fetchData = async () => {
       try {
