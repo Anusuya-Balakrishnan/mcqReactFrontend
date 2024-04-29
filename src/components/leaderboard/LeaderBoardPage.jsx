@@ -95,9 +95,7 @@ function LeaderBoardPage() {
                               alt="medal"
                             />
                           </div>
-                          <div>
-                            {item.result} attended {item.noOfTestAttended}
-                          </div>
+                          <div>{item.result}</div>
                         </div>
                       </React.Fragment>
                     );
